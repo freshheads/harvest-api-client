@@ -1,6 +1,8 @@
 Harvest API Client
 ==================
 
+[![Build Status](https://travis-ci.org/freshheads/harvest-api-client.png?branch=develop)](https://travis-ci.org/freshheads/harvest-api-client)
+
 This library provides an API client for the [Harvest](https://www.getharvest.com/) [V2 API](https://help.getharvest.com/api-v2/).
 Plain PHP classes are used to map the data from the API. [JMS Serializer](https://jmsyst.com/libs/serializer) is used for the serialization/deserializtion of this model classes.
 
