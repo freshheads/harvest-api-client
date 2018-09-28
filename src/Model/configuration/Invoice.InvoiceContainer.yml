@@ -1,0 +1,5 @@
+FH\Bundle\HarvestBundle\Model\Invoice\InvoiceContainer:
+    exclusion_policy: ALL
+    properties:
+        invoices:
+            type: array<FH\Bundle\HarvestBundle\Model\Invoice\Invoice>

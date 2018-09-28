@@ -1,0 +1,13 @@
+FH\Bundle\HarvestBundle\Model\Client\Client:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        name:
+            type: string
+        address:
+            type: string
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable

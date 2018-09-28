@@ -1,0 +1,7 @@
+FH\Bundle\HarvestBundle\Model\Invoice\Client:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        name:
+            type: string

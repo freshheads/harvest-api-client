@@ -1,0 +1,46 @@
+{
+    "name": "freshheads/harvest-api-client",
+    "readme": "README.md",
+    "description": "An API client to read and write to Harvest via the Harvest API version 2",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joris van de Sande",
+            "email": "joris.van.de.sande@freshheads.com",
+            "homepage": "https://freshheads.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@freshheads.com",
+        "issues": "https://github.com/freshheads/harvest-api-client/issues"
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "psr/http-message": "^1.0",
+        "php-http/client-implementation": "^1.0",
+        "php-http/httplug": "^1.0",
+        "php-http/message-factory": "^1.0",
+        "php-http/discovery": "^1.0",
+        "symfony/options-resolver": "^3.0 || ^4.0"
+    },
+    "require-dev": {
+        "php-http/mock-client": "^1.0",
+        "php-http/message": "^1.0",
+        "guzzlehttp/psr7": "^1.0",
+        "jms/serializer": "^1.13.0",
+        "phpunit/phpunit": "^7"
+    },
+    "suggest": {
+        "jms/serializer": "Required to use the supplied endpoints"
+    },
+    "autoload": {
+        "psr-4": { "FH\\HarvestApiClient\\": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "1.x-dev"
+        }
+    }
+}
