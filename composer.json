@@ -23,7 +23,8 @@
         "php-http/httplug": "^1.0",
         "php-http/message-factory": "^1.0",
         "php-http/discovery": "^1.0",
-        "symfony/options-resolver": "^3.0 || ^4.0"
+        "symfony/options-resolver": "^3.0 || ^4.0",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "php-http/mock-client": "^1.0",
@@ -42,5 +43,8 @@
         "branch-alias": {
             "dev-develop": "1.x-dev"
         }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit"
     }
 }
