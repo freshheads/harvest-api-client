@@ -1,4 +1,4 @@
-FH\Bundle\HarvestBundle\Model\Client\Client:
+FH\HarvestApiClient\Model\Client\Client:
     exclusion_policy: ALL
     properties:
         id:
@@ -11,3 +11,5 @@ FH\Bundle\HarvestBundle\Model\Client\Client:
             type: DateTimeImmutable
         updatedAt:
             type: DateTimeImmutable
+
+

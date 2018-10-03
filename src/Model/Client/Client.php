@@ -13,35 +13,38 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Client;
 
+use JMS\Serializer\Annotation\Type;
+
 /**
  * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
  */
 class Client
 {
     /**
-     * @var int
+     * @Type("int")
      */
-    private $id;
+    public $id;
 
     /**
-     * @var string
+     * @Type("string")
      */
-    private $name;
+    public $name;
 
     /**
-     * @var string
+     * @Type("string")
      */
-    private $address;
+    public $address;
 
     /**
+     * @Type("DateTimeImmutable")
      * @var \DateTimeInterface
      */
-    private $createdAt;
+    public $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("DateTimeImmutable")
      */
-    private $updatedAt;
+    public $updatedAt;
 
     public function __toString()
     {
