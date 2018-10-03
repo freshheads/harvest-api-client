@@ -1,0 +1,5 @@
+FH\HarvestApiClient\Model\Project\ProjectContainer:
+    exclusion_policy: ALL
+    properties:
+        projects:
+            type: array<FH\HarvestApiClient\Model\Project\Project>
