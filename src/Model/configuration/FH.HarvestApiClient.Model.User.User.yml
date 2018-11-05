@@ -1,0 +1,46 @@
+FH\HarvestApiClient\Model\User\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        firstName:
+            type: string
+        lastName:
+            type: string
+        email:
+            type: string
+        telephone:
+            type: string
+        timezone:
+            type: string
+        hasAccessToAllFutureProjects:
+            type: boolean
+        isContractor:
+            type: boolean
+        isAdmin:
+            type: boolean
+        isProjectManager:
+            type: boolean
+        canSeeRates:
+            type: boolean
+        canCreateProjects:
+            type: boolean
+        canCreateInvoices:
+            type: boolean
+        isActive:
+            type: boolean
+        weeklyCapacity:
+            type: double
+        defaultHourlyRate:
+            type: double
+        costRate:
+            type: double
+        $roles:
+            type: array
+        avatarUrl:
+            type: string
+        createdAt:
+            type: DateTime
+        updatedAt:
+            type: DateTime
+
