@@ -1,0 +1,56 @@
+FH\HarvestApiClient\Model\Invoice\Invoice:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        number:
+            type: string
+        clientKey:
+            type: string
+        client:
+            type: FH\HarvestApiClient\Model\Client\Client
+        periodStart:
+            type: DateTimeImmutable<'Y-m-d'>
+            nullable: true
+        periodEnd:
+            type: DateTimeImmutable<'Y-m-d'>
+            nullable: true
+        issueDate:
+            type: DateTimeImmutable<'Y-m-d'>
+        dueDate:
+            type: DateTimeImmutable<'Y-m-d'>
+        amount:
+            type: float
+        state:
+            type: string
+        notes:
+            type: string
+        dueAmount:
+            type: float
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable
+        sentAt:
+            type: DateTimeImmutable
+        tax:
+            type: integer
+        taxAmount:
+            type: float
+        tax2:
+            type: integer
+            nullable: true
+        tax2Amount:
+            type: float
+            nullable: true
+        discount:
+            type: float
+            nullable: true
+        discountAmount:
+            type: float
+            nullable: true
+        subject:
+            type: string
+        lineItems:
+            type: array<FH\HarvestApiClient\Model\Invoice\Line>
+            nullable: true

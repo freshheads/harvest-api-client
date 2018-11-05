@@ -21,7 +21,7 @@ class InvoiceContainer
     /**
      * @var Invoice[]
      */
-    private $invoices;
+    public $invoices;
 
     /**
      * @return Invoice[]
@@ -35,7 +35,7 @@ class InvoiceContainer
      * @param Invoice[] $invoices
      * @return self
      */
-    public function setInvoices(array $invoices): self
+    public function setInvoices(array $invoices)
     {
         $this->invoices = $invoices;
 

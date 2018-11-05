@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Freshheads Harvest API Client library.
  *
@@ -8,10 +7,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Invoice;
+
+use JMS\Serializer\Annotation\Type;
+use FH\HarvestApiClient\Model\Client\Client;
 
 /**
  * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
@@ -26,120 +27,120 @@ class Invoice
     const STATE_PAST_DUE = 'pastdue';
 
     /**
-     * @var int
+     * @Type("int")
      */
-    private $id;
+    public $id;
 
     /**
-     * @var string
+     * @Type("string")
      */
-    private $clientKey;
+    public $clientKey;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("int")
      */
-    private $periodStart;
+    public $periodStart;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("DateTimeImmutable")
      */
-    private $periodEnd;
+    public $periodEnd;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("DateTimeImmutable")
      */
-    private $issueDate;
+    public $issueDate;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("DateTimeImmutable")
      */
-    private $sentAt;
+    public $sentAt;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("DateTimeImmutable")
      */
-    private $dueDate;
+    public $dueDate;
 
     /**
-     * @var float
+     * @Type("double")
      */
-    private $amount;
+    public $amount;
 
     /**
-     * @var string
+     * @Type("string")
      */
-    private $state;
+    public $state;
 
     /**
-     * @var string
+     * @Type("string")
      */
-    private $notes;
+    public $notes;
 
     /**
-     * @var int
+     * @Type("double")
      */
-    private $dueAmount;
+    public $dueAmount;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("DateTimeImmutable")
      */
-    private $createdAt;
+    public $createdAt;
 
     /**
-     * @var \DateTimeInterface
+     * @Type("DateTimeImmutable")
      */
-    private $updatedAt;
+    public $updatedAt;
 
     /**
-     * @var int
+     * @Type("double")
      */
-    private $tax;
+    public $tax;
 
     /**
-     * @var float
+     * @Type("double")
      */
-    private $taxAmount;
+    public $taxAmount;
 
     /**
-     * @var int
+     * @Type("double")
      */
-    private $tax2;
+    public $tax2;
 
     /**
-     * @var float
+     * @Type("double")
      */
-    private $tax2Amount;
+    public $tax2Amount;
 
     /**
-     * @var string
+     * @Type("string")
      */
-    private $subject;
+    public $subject;
 
     /**
-     * @var InvoiceLine[]
+     * @Type("string")
      */
-    private $lineItems = [];
+    public $lineItems = [];
 
     /**
-     * @var string
+     * @Type("double")
      */
-    private $number;
+    public $number;
 
     /**
-     * @var Client
+     * @Type("string")
      */
-    private $client;
+    public $client;
 
     /**
-     * @var float
+     * @Type("double")
      */
-    private $discount;
+    public $discount;
 
     /**
-     * @var float
+     * @Type("double")
      */
-    private $discountAmount;
-
+    public $discountAmount;
+    
     public function __toString()
     {
         return (string) $this->getId();
@@ -160,7 +161,6 @@ class Invoice
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
 
@@ -179,7 +179,6 @@ class Invoice
     public function setClientKey($clientKey)
     {
         $this->clientKey = $clientKey;
-
         return $this;
     }
 
@@ -211,10 +210,9 @@ class Invoice
      * @param \DateTimeInterface $periodStart
      * @return self
      */
-    public function setPeriodStart(\DateTimeInterface $periodStart)
+    public function setPeriodStart(\DateTimeInterface $periodStart = null)
     {
         $this->periodStart = $periodStart;
-
         return $this;
     }
 
@@ -233,7 +231,6 @@ class Invoice
     public function setPeriodEnd(\DateTimeInterface $periodEnd)
     {
         $this->periodEnd = $periodEnd;
-
         return $this;
     }
 
@@ -252,7 +249,6 @@ class Invoice
     public function setIssueDate(\DateTimeInterface $issueDate)
     {
         $this->issueDate = $issueDate;
-
         return $this;
     }
 
@@ -271,7 +267,6 @@ class Invoice
     public function setDueDate(\DateTimeInterface $dueDate)
     {
         $this->dueDate = $dueDate;
-
         return $this;
     }
 
@@ -290,7 +285,6 @@ class Invoice
     public function setAmount($amount)
     {
         $this->amount = $amount;
-
         return $this;
     }
 
@@ -309,7 +303,6 @@ class Invoice
     public function setState($state)
     {
         $this->state = $state;
-
         return $this;
     }
 
@@ -328,7 +321,6 @@ class Invoice
     public function setNotes($notes)
     {
         $this->notes = $notes;
-
         return $this;
     }
 
@@ -347,7 +339,6 @@ class Invoice
     public function setDueAmount($dueAmount)
     {
         $this->dueAmount = $dueAmount;
-
         return $this;
     }
 
@@ -366,7 +357,6 @@ class Invoice
     public function setCreatedAt(\DateTimeInterface $createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -385,7 +375,6 @@ class Invoice
     public function setUpdatedAt(\DateTimeInterface $updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -425,7 +414,6 @@ class Invoice
     public function setTax($tax)
     {
         $this->tax = $tax;
-
         return $this;
     }
 
@@ -444,7 +432,6 @@ class Invoice
     public function setTaxAmount($taxAmount)
     {
         $this->taxAmount = $taxAmount;
-
         return $this;
     }
 
@@ -463,7 +450,6 @@ class Invoice
     public function setTax2($tax2)
     {
         $this->tax2 = $tax2;
-
         return $this;
     }
 
@@ -482,7 +468,6 @@ class Invoice
     public function setTax2Amount($tax2Amount)
     {
         $this->tax2Amount = $tax2Amount;
-
         return $this;
     }
 
@@ -501,7 +486,6 @@ class Invoice
     public function setSubject($subject)
     {
         $this->subject = $subject;
-
         return $this;
     }
 
@@ -553,7 +537,7 @@ class Invoice
         $this->discountAmount = $discountAmount;
     }
 
-     /**
+    /**
      * @return array
      */
     public function getLineItems()
@@ -568,24 +552,22 @@ class Invoice
     public function setLineItems($lineItems)
     {
         $this->lineItems = [];
-
         foreach ($lineItems as $line) {
             $this->addLine($line);
         }
-
         return $this;
     }
 
     /**
-     * @param InvoiceLine $line
+     * @param Line $line
      * @return self
      */
-    public function addLine(InvoiceLine $line)
+    public function addLine(Line $line)
     {
         if ($line->getKind() !== null) {
             $this->lineItems[] = $line->setInvoice($this);
         }
-
         return $this;
     }
 }
+

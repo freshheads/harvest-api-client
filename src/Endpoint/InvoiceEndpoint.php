@@ -13,19 +13,19 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Endpoint;
 
-use FH\HarvestApiClient\Client\Client;
+use JMS\Serializer\Serializer;
+use FH\HarvestApiClient\Model\Client\Client;
 use FH\HarvestApiClient\Model\Invoice\Invoice;
 use FH\HarvestApiClient\Model\Invoice\InvoiceContainer;
-use JMS\Serializer\Serializer;
+use FH\HarvestApiClient\Client\Client as HarvestClient;
 
 /**
- * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
- * @author Joris van de Sande <joris.van.de.sande@freshheads.com>
+ * @author Lars Janssen <lars.janssen@freshheads.com>
  */
 class InvoiceEndpoint
 {
     /**
-     * @var Client
+     * @var HarvestClient
      */
     private $client;
 
@@ -34,8 +34,13 @@ class InvoiceEndpoint
      */
     private $serializer;
 
+    /**
+     * ClientEndpoint constructor.
+     * @param HarvestClient $client
+     * @param Serializer $serializer
+     */
     public function __construct(
-        Client $client,
+        HarvestClient $client,
         Serializer $serializer
     ) {
         $this->client = $client;
@@ -44,74 +49,77 @@ class InvoiceEndpoint
 
     /**
      * @param int $id
-     * @return Invoice
+     * @return Client
      */
     public function find($id)
     {
-        $response = $this->client
-            ->get('/invoices/' . urlencode($id));
+        $response = $this->client->get('/invoices/' . urlencode($id));
 
         $data = $response->getBody()->getContents();
 
-        /** @var Invoice $invoice */
-        $invoice = $this
+        /** Client $client */
+        return $this
             ->serializer
             ->deserialize($data, Invoice::class, 'json');
-
-        return $invoice;
     }
 
     /**
-     * @param int $page
-     * @param \DateTimeInterface $updatedSince
-     * @param int $clientId
-     * @return array|Invoice[]
+     * @return array|Client[]
      */
-    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null, $clientId = null)
+    public function findAll()
     {
-        if (!$updatedSince instanceof \DateTimeInterface) {
-            $updatedSince = new \DateTimeImmutable('now');
-        }
-
-        $queryParameters = [
-            'page' => $page,
-            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
-            'client_id' => $clientId
-        ];
-
-        $response = $this
-            ->client
-            ->get('/invoices', $queryParameters);
-
-        $data = $response->getBody()->getContents();
-
-        $invoiceContainers = $this
-            ->serializer
-            ->deserialize($data, InvoiceContainer::class, 'json');
-
-        return $invoiceContainers->getInvoices();
-    }
-
-    /**
-     * @param \DateTimeInterface $since
-     * @return Invoice[]
-     */
-    public function findByUpdatedSince(\DateTimeInterface $since)
-    {
-        $totalInvoices = [];
         $page = 1;
+        $projects = [];
 
-        while (true) {
-            $invoices = $this->findPaged($page, $since);
+        do {
 
-            if (count($invoices) < 1) {
-                break;
-            }
+            $response = $this->client->get('/invoices', ['page' => $page]);
 
-            $totalInvoices = array_merge($totalInvoices, $invoices);
-            $page += 1;
-        }
+            $data = $response->getBody()->getContents();
 
-        return $totalInvoices;
+            /** @var Invoice $invoiceContainer */
+            $invoiceContainer = $this->serializer
+                ->deserialize($data, InvoiceContainer::class,'json');
+
+            $invoices = array_merge($projects, $invoiceContainer->getInvoices());
+            $page++;
+
+        } while (count($invoiceContainer->getInvoices()) > 0);
+
+        return $invoices;
+    }
+
+    /**
+     * @param Invoice $invoice
+     * @return string
+     */
+    public function create(Invoice $invoice)
+    {
+        $response = $this->client->post('/invoices', (array) $invoice);
+
+        return $response->getBody()->getContents();
+    }
+
+    /**
+     * @param Invoice $invoice
+     * @param $id
+     * @return string
+     */
+    public function update(Invoice $invoice, $id)
+    {
+        $response = $this->client->patch(sprintf('/invoices/%s', $id), (array) $invoice);
+
+        return $response->getBody()->getContents();
+    }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public function delete($id)
+    {
+        $response = $this->client->delete(sprintf('/invoices/%s', $id));
+
+        return $response->getBody()->getContents();
     }
 }
