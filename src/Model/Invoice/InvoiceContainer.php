@@ -24,7 +24,7 @@ class InvoiceContainer
     public $invoices;
 
     /**
-     * @return Invoice[]
+     * @return mixed
      */
     public function getInvoices(): array
     {

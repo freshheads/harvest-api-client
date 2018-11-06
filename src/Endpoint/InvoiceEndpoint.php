@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Endpoint;
 
 use JMS\Serializer\Serializer;
-use FH\HarvestApiClient\Model\Client\Client;
 use FH\HarvestApiClient\Model\Invoice\Invoice;
 use FH\HarvestApiClient\Model\Invoice\InvoiceContainer;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
@@ -35,7 +34,7 @@ class InvoiceEndpoint
     private $serializer;
 
     /**
-     * ClientEndpoint constructor.
+     * InvoiceEndpoint constructor.
      * @param HarvestClient $client
      * @param Serializer $serializer
      */
@@ -49,77 +48,97 @@ class InvoiceEndpoint
 
     /**
      * @param int $id
-     * @return Client
+     * @return Invoice
      */
-    public function find($id)
+    public function find($id): Invoice
     {
         $response = $this->client->get('/invoices/' . urlencode($id));
 
         $data = $response->getBody()->getContents();
 
-        /** Client $client */
         return $this
             ->serializer
             ->deserialize($data, Invoice::class, 'json');
     }
 
     /**
-     * @return array|Client[]
+     * @param array $filterParameters
+     * @return array
      */
-    public function findAll()
+    private function findAll($filterParameters = []): array
     {
-        $page = 1;
-        $projects = [];
+        $response = $this
+            ->client
+            ->get('/invoices', $filterParameters);
 
-        do {
+        $data = $response->getBody()->getContents();
 
-            $response = $this->client->get('/invoices', ['page' => $page]);
+        $invoiceContainer = $this
+            ->serializer
+            ->deserialize($data, InvoiceContainer::class, 'json');
 
-            $data = $response->getBody()->getContents();
+        return $invoiceContainer->getInvoices();
+    }
 
-            /** @var Invoice $invoiceContainer */
-            $invoiceContainer = $this->serializer
-                ->deserialize($data, InvoiceContainer::class,'json');
+    /**
+     * @param int $page
+     * @param \DateTimeInterface|null $updatedSince
+     * @return array
+     * @throws \Exception
+     */
+    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null): array
+    {
+        if (!$updatedSince instanceof \DateTimeInterface) {
+            $updatedSince = new \DateTimeImmutable('now');
+        }
 
-            $invoices = array_merge($projects, $invoiceContainer->getInvoices());
-            $page++;
+        $queryParameters = [
+            'page' => $page,
+            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
+        ];
 
-        } while (count($invoiceContainer->getInvoices()) > 0);
-
-        return $invoices;
+        return $this->findAll($queryParameters);
     }
 
     /**
      * @param Invoice $invoice
-     * @return string
+     * @return Invoice
      */
-    public function create(Invoice $invoice)
+    public function create(Invoice $invoice): Invoice
     {
-        $response = $this->client->post('/invoices', (array) $invoice);
+        $invoice = $this->serializer->toArray($invoice);
 
-        return $response->getBody()->getContents();
+        $response = $this->client->post('/invoices', $invoice);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, Invoice::class, 'json');
     }
 
     /**
      * @param Invoice $invoice
-     * @param $id
-     * @return string
+     * @return Invoice
      */
-    public function update(Invoice $invoice, $id)
+    public function update(Invoice $invoice): Invoice
     {
-        $response = $this->client->patch(sprintf('/invoices/%s', $id), (array) $invoice);
+        $invoice = $this->serializer->toArray($invoice);
 
-        return $response->getBody()->getContents();
+        $response = $this->client->patch(sprintf('/invoices/%s', $invoice['id']), $invoice);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, Invoice::class, 'json');
     }
 
     /**
      * @param $id
-     * @return string
      */
     public function delete($id)
     {
-        $response = $this->client->delete(sprintf('/invoices/%s', $id));
-
-        return $response->getBody()->getContents();
+        $this->client->delete(sprintf('/invoices/%s', $id));
     }
 }

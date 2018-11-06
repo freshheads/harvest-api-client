@@ -5,7 +5,11 @@ FH\HarvestApiClient\Model\Client\Client:
             type: integer
         name:
             type: string
+        isActive:
+            type: boolean
         address:
+            type: string
+        currency:
             type: string
         createdAt:
             type: DateTimeImmutable

@@ -22,31 +22,40 @@ class Line
      * @var string
      */
     public $kind;
+
     /**
      * @var string
      */
     public $description;
+
     /**
      * @var int
      */
     public $quantity;
+
     /**
      * @var float
      */
     public $unitPrice;
+
     /**
      * @var float
      */
     public $amount;
+
     /**
      * @var bool
      */
     public $taxed;
+
     /**
      * @var bool
      */
     public $taxed2;
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getKind() . ' - ' . $this->getDescription();

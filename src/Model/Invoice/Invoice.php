@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Invoice;
 
-use JMS\Serializer\Annotation\Type;
 use FH\HarvestApiClient\Model\Client\Client;
 
 /**
@@ -27,120 +26,123 @@ class Invoice
     const STATE_PAST_DUE = 'pastdue';
 
     /**
-     * @Type("int")
+     * @var
      */
-    public $id;
+    private $id;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $clientKey;
+    private $clientKey;
 
     /**
-     * @Type("int")
+     * @var
      */
-    public $periodStart;
+    private $periodStart;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $periodEnd;
+    private $periodEnd;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $issueDate;
+    private $issueDate;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $sentAt;
+    private $sentAt;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $dueDate;
+    private $dueDate;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $amount;
+    private $amount;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $state;
+    private $state;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $notes;
+    private $notes;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $dueAmount;
+    private $dueAmount;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $createdAt;
+    private $createdAt;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $updatedAt;
+    private $updatedAt;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $tax;
+    private $tax;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $taxAmount;
+    private $taxAmount;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $tax2;
+    private $tax2;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $tax2Amount;
+    private $tax2Amount;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $subject;
+    private $subject;
 
     /**
-     * @Type("string")
+     * @var array
      */
-    public $lineItems = [];
+    private $lineItems = [];
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $number;
+    private $number;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $client;
+    private $client;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $discount;
+    private $discount;
 
     /**
-     * @Type("double")
+     * @var
      */
     public $discountAmount;
-    
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return (string) $this->getId();
@@ -394,6 +396,10 @@ class Invoice
         $this->sentAt = $sentAt;
     }
 
+    /**
+     * @return bool
+     * @throws \Exception
+     */
     public function isSent()
     {
         return $this->sentAt instanceof \DateTimeInterface && $this->sentAt < new \DateTimeImmutable();

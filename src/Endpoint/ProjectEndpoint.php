@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Endpoint;
 
 use JMS\Serializer\Serializer;
-use FH\HarvestApiClient\Model\Client\Client;
 use FH\HarvestApiClient\Model\Project\Project;
 use FH\HarvestApiClient\Model\Project\ProjectContainer;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
@@ -49,77 +48,97 @@ class ProjectEndpoint
 
     /**
      * @param int $id
-     * @return Client
+     * @return Project
      */
-    public function find($id)
+    public function find($id): Project
     {
         $response = $this->client->get('/projects/' . urlencode($id));
 
         $data = $response->getBody()->getContents();
 
-        /** Client $client */
         return $this
             ->serializer
             ->deserialize($data, Project::class, 'json');
     }
 
     /**
-     * @return array|Client[]
+     * @param array $filterParameters
+     * @return array
      */
-    public function findAll()
+    private function findAll($filterParameters = []): array
     {
-        $page = 1;
-        $projects = [];
+        $response = $this
+            ->client
+            ->get('/projects', $filterParameters);
 
-        do {
+        $data = $response->getBody()->getContents();
 
-            $response = $this->client->get('/projects', ['page' => $page]);
+        $projectContainer = $this
+            ->serializer
+            ->deserialize($data, ProjectContainer::class, 'json');
 
-            $data = $response->getBody()->getContents();
+        return $projectContainer->getProjects();
+    }
 
-            /** @var ProjectContainer $projectContainer */
-            $projectContainer = $this->serializer
-                ->deserialize($data, ProjectContainer::class,'json');
+    /**
+     * @param int $page
+     * @param \DateTimeInterface|null $updatedSince
+     * @return array
+     * @throws \Exception
+     */
+    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null): array
+    {
+        if (!$updatedSince instanceof \DateTimeInterface) {
+            $updatedSince = new \DateTimeImmutable('now');
+        }
 
-            $projects = array_merge($projects, $projectContainer->getProjects());
-            $page++;
+        $queryParameters = [
+            'page' => $page,
+            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
+        ];
 
-        } while (count($projectContainer->getProjects()) > 0);
-
-        return $projects;
+        return $this->findAll($queryParameters);
     }
 
     /**
      * @param Project $project
-     * @return string
+     * @return Project
      */
-    public function create(Project $project)
+    public function create(Project $project): Project
     {
-        $response = $this->client->post('/projects', (array) $project);
+        $project = $this->serializer->toArray($project);
 
-        return $response->getBody()->getContents();
+        $response = $this->client->post('/projects', $project);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, Project::class, 'json');
     }
 
     /**
      * @param Project $project
-     * @param $id
-     * @return string
+     * @return Project
      */
-    public function update(Project $project, $id)
+    public function update(Project $project): Project
     {
-        $response = $this->client->patch(sprintf('/projects/%s', $id), (array) $project);
+        $project = $this->serializer->toArray($project);
 
-        return $response->getBody()->getContents();
+        $response = $this->client->patch(sprintf('/projects/%s', $project['id']), $project);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, Project::class, 'json');
     }
 
     /**
      * @param $id
-     * @return string
      */
     public function delete($id)
     {
-        $response = $this->client->delete(sprintf('/projects/%s', $id));
-
-        return $response->getBody()->getContents();
+        $this->client->delete(sprintf('/projects/%s', $id));
     }
 }

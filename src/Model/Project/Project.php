@@ -13,127 +13,125 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Project;
 
-use JMS\Serializer\Annotation\Type;
-
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
 class Project
 {
     /**
-     * @Type("int")
+     * @var
      */
-    public $id;
+    private $id;
 
     /**
-     * @Type("FH\HarvestApiClient\Model\Client\Client")
+     * @var
      */
-    public $client;
+    private $client;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $name;
+    private $name;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $code;
+    private $code;
 
     /**
-     * @Type("boolean")
+     * @var
      */
-    public $isActive;
+    private $isActive;
 
     /**
-     * @Type("boolean")
+     * @var
      */
-    public $isBillable;
+    private $isBillable;
 
     /**
-     * @Type("boolean")
+     * @var
      */
-    public $isFixedFee;
+    private $isFixedFee;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $billBy;
+    private $billBy;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $budget;
+    private $budget;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $budgetBy;
+    private $budgetBy;
 
     /**
-     * @Type("boolean")
+     * @var
      */
-    public $budgetIsMonthly;
+    private $budgetIsMonthly;
 
     /**
-     * @Type("boolean")
+     * @var
      */
-    public $notifyWhenOverBudget;
+    private $notifyWhenOverBudget;
 
     /**
-     * @Type("decimal")
+     * @var
      */
-    public $overBudgetNotificationPercentage;
+    private $overBudgetNotificationPercentage;
 
     /**
-     * @Type("boolean")
+     * @var
      */
-    public $showBudgetToAll;
+    private $showBudgetToAll;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $createdAt;
+    private $createdAt;
 
     /**
-     * @Type("DateTimeImmutable")
+     * @var
      */
-    public $updatedAt;
+    private $updatedAt;
 
     /**
-     * @Type("DateTimeImmutable<'Y-m-d'>")
+     * @var
      */
-    public $startsOn;
+    private $startsOn;
 
     /**
-     * @Type("DateTimeImmutable<'Y-m-d'>")
+     * @var
      */
-    public $overBudgetNotificationDate;
+    private $overBudgetNotificationDate;
 
     /**
-     * @Type("string")
+     * @var
      */
-    public $notes;
+    private $notes;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $costBudget;
+    private $costBudget;
 
     /**
-     * @Type("boolean")
+     * @var
      */
-    public $costBudgetIncludeExpenses;
+    private $costBudgetIncludeExpenses;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $hourlyRate;
+    private $hourlyRate;
 
     /**
-     * @Type("double")
+     * @var
      */
-    public $fee;
+    private $fee;
 
     /**
      * @return mixed
@@ -149,6 +147,22 @@ class Project
     public function setId($id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param mixed $client
+     */
+    public function setClient($client): void
+    {
+        $this->client = $client;
     }
 
     /**

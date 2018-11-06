@@ -40,7 +40,7 @@ final class ClientFactory
         HttpClient $client = null,
         MessageFactory $messageFactory = null,
         array $options = []
-    ) {
+    ): Client {
         if (!$client instanceof HttpClient) {
             $client = HttpClientDiscovery::find();
         }
@@ -62,7 +62,7 @@ final class ClientFactory
      * @param array $options
      * @return array
      */
-    private static function resolveOptions(array $options = [])
+    private static function resolveOptions(array $options = []): array
     {
         $optionsResolver = new OptionsResolver();
         $optionsResolver->setDefaults([

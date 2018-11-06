@@ -16,7 +16,6 @@ namespace FH\HarvestApiClient\Endpoint;
 use FH\HarvestApiClient\Model\User\User;
 use FH\HarvestApiClient\Model\User\UserContainer;
 use JMS\Serializer\Serializer;
-use FH\HarvestApiClient\Model\Client\Client;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 
 /**
@@ -49,77 +48,97 @@ class UserEndpoint
 
     /**
      * @param int $id
-     * @return Client
+     * @return User
      */
-    public function find($id)
+    public function find($id): User
     {
         $response = $this->client->get('/users/' . urlencode($id));
 
         $data = $response->getBody()->getContents();
 
-        /** User $user */
         return $this
             ->serializer
             ->deserialize($data, User::class, 'json');
     }
 
     /**
-     * @return array|User[]
+     * @param array $filterParameters
+     * @return array
      */
-    public function findAll()
+    private function findAll($filterParameters = []): array
     {
-        $page = 1;
-        $users = [];
+        $response = $this
+            ->client
+            ->get('/users', $filterParameters);
 
-        do {
+        $data = $response->getBody()->getContents();
 
-            $response = $this->client->get('/users', ['page' => $page]);
+        $userContainer = $this
+            ->serializer
+            ->deserialize($data, UserContainer::class, 'json');
 
-            $data = $response->getBody()->getContents();
+        return $userContainer->getUsers();
+    }
 
-            /** @var UserContainer $userContainer */
-            $userContainer = $this->serializer
-                ->deserialize($data, UserContainer::class,'json');
+    /**
+     * @param int $page
+     * @param \DateTimeInterface|null $updatedSince
+     * @return array
+     * @throws \Exception
+     */
+    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null): array
+    {
+        if (!$updatedSince instanceof \DateTimeInterface) {
+            $updatedSince = new \DateTimeImmutable('now');
+        }
 
-            $users = array_merge($users, $userContainer->getUsers());
-            $page++;
+        $queryParameters = [
+            'page' => $page,
+            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
+        ];
 
-        } while (count($userContainer->getUsers()) > 0);
+        return $this->findAll($queryParameters);
+    }
 
-        return $users;
+    /**
+     * @param User $user
+     * @return User
+     */
+    public function create(User $user): User
+    {
+        $user = $this->serializer->toArray($user);
+
+        $response = $this->client->post('/users', $user);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, User::class, 'json');
     }
 
     /**
      * @param User $user
      * @return string
      */
-    public function create(User $user)
+    public function update(User $user)
     {
-        $response = $this->client->post('/users', (array) $user);
+        $user = $this->serializer->toArray($user);
 
-        return $response->getBody()->getContents();
-    }
+        $response = $this->client->patch(sprintf('/users/%s', $user['id']), $user);
 
-    /**
-     * @param User $user
-     * @param $id
-     * @return string
-     */
-    public function update(User $user, $id)
-    {
-        $response = $this->client->patch(sprintf('/users/%s', $id), (array) $user);
+        $data = $response->getBody()->getContents();
 
-        return $response->getBody()->getContents();
+        return $this
+            ->serializer
+            ->deserialize($data, User::class, 'json');
     }
 
     /**
      * @param $id
-     * @return string
      */
     public function delete($id)
     {
-        $response = $this->client->delete(sprintf('/users/%s', $id));
-
-        return $response->getBody()->getContents();
+        $this->client->delete(sprintf('/users/%s', $id));
     }
 }

@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\User;
 
-use JMS\Serializer\Annotation\Type;
-
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
@@ -53,7 +51,7 @@ class User
     /**
      * @var
      */
-    public $hasAccessToAllFutureProjects;
+    public $hasAccessToAllFuture_projects;
 
     /**
      * @var
@@ -160,6 +158,22 @@ class User
     /**
      * @return mixed
      */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getEmail()
     {
         return $this->email;
@@ -210,15 +224,15 @@ class User
      */
     public function getHasAccessToAllFutureProjects()
     {
-        return $this->hasAccessToAllFutureProjects;
+        return $this->hasAccessToAllFuture_projects;
     }
 
     /**
-     * @param mixed $hasAccessToAllFutureProjects
+     * @param mixed $hasAccessToAllFuture_projects
      */
-    public function setHasAccessToAllFutureProjects($hasAccessToAllFutureProjects): void
+    public function setHasAccessToAllFutureProjects($hasAccessToAllFuture_projects): void
     {
-        $this->hasAccessToAllFutureProjects = $hasAccessToAllFutureProjects;
+        $this->hasAccessToAllFuture_projects = $hasAccessToAllFuture_projects;
     }
 
     /**
