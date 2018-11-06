@@ -1,4 +1,4 @@
-FH\Bundle\HarvestBundle\Model\Invoice\Invoice:
+FH\HarvestApiClient\Model\Invoice\Invoice:
     exclusion_policy: ALL
     properties:
         id:
@@ -8,7 +8,7 @@ FH\Bundle\HarvestBundle\Model\Invoice\Invoice:
         clientKey:
             type: string
         client:
-            type: FH\Bundle\HarvestBundle\Model\Invoice\Client
+            type: FH\HarvestApiClient\Model\Client\Client
         periodStart:
             type: DateTimeImmutable<'Y-m-d'>
             nullable: true
@@ -52,5 +52,5 @@ FH\Bundle\HarvestBundle\Model\Invoice\Invoice:
         subject:
             type: string
         lineItems:
-            type: array<FH\Bundle\HarvestBundle\Model\Invoice\InvoiceLine>
+            type: array<FH\HarvestApiClient\Model\Invoice\Line>
             nullable: true

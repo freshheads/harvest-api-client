@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Endpoint;
 
 use JMS\Serializer\Serializer;
-use FH\HarvestApiClient\Model\Invoice\Invoice;
-use FH\HarvestApiClient\Model\Invoice\InvoiceContainer;
+use FH\HarvestApiClient\Model\Project\Project;
+use FH\HarvestApiClient\Model\Project\ProjectContainer;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class InvoiceEndpoint
+class ProjectEndpoint
 {
     /**
      * @var HarvestClient
@@ -34,7 +34,7 @@ class InvoiceEndpoint
     private $serializer;
 
     /**
-     * InvoiceEndpoint constructor.
+     * ClientEndpoint constructor.
      * @param HarvestClient $client
      * @param Serializer $serializer
      */
@@ -48,17 +48,17 @@ class InvoiceEndpoint
 
     /**
      * @param int $id
-     * @return Invoice
+     * @return Project
      */
-    public function find($id): Invoice
+    public function find($id): Project
     {
-        $response = $this->client->get('/invoices/' . urlencode($id));
+        $response = $this->client->get('/projects/' . urlencode($id));
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Invoice::class, 'json');
+            ->deserialize($data, Project::class, 'json');
     }
 
     /**
@@ -69,15 +69,15 @@ class InvoiceEndpoint
     {
         $response = $this
             ->client
-            ->get('/invoices', $filterParameters);
+            ->get('/projects', $filterParameters);
 
         $data = $response->getBody()->getContents();
 
-        $invoiceContainer = $this
+        $projectContainer = $this
             ->serializer
-            ->deserialize($data, InvoiceContainer::class, 'json');
+            ->deserialize($data, ProjectContainer::class, 'json');
 
-        return $invoiceContainer->getInvoices();
+        return $projectContainer->getProjects();
     }
 
     /**
@@ -101,37 +101,37 @@ class InvoiceEndpoint
     }
 
     /**
-     * @param Invoice $invoice
-     * @return Invoice
+     * @param Project $project
+     * @return Project
      */
-    public function create(Invoice $invoice): Invoice
+    public function create(Project $project): Project
     {
-        $invoice = $this->serializer->toArray($invoice);
+        $project = $this->serializer->toArray($project);
 
-        $response = $this->client->post('/invoices', $invoice);
+        $response = $this->client->post('/projects', $project);
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Invoice::class, 'json');
+            ->deserialize($data, Project::class, 'json');
     }
 
     /**
-     * @param Invoice $invoice
-     * @return Invoice
+     * @param Project $project
+     * @return Project
      */
-    public function update(Invoice $invoice): Invoice
+    public function update(Project $project): Project
     {
-        $invoice = $this->serializer->toArray($invoice);
+        $project = $this->serializer->toArray($project);
 
-        $response = $this->client->patch(sprintf('/invoices/%s', $invoice['id']), $invoice);
+        $response = $this->client->patch(sprintf('/projects/%s', $project['id']), $project);
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Invoice::class, 'json');
+            ->deserialize($data, Project::class, 'json');
     }
 
     /**
@@ -139,6 +139,6 @@ class InvoiceEndpoint
      */
     public function delete($id)
     {
-        $this->client->delete(sprintf('/invoices/%s', $id));
+        $this->client->delete(sprintf('/projects/%s', $id));
     }
 }

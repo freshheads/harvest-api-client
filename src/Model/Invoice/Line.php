@@ -14,50 +14,52 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Model\Invoice;
 
 /**
- * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
+ * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class InvoiceLine
+class Line
 {
     /**
      * @var string
      */
-    private $kind;
+    public $kind;
 
     /**
      * @var string
      */
-    private $description;
+    public $description;
 
     /**
      * @var int
      */
-    private $quantity;
+    public $quantity;
 
     /**
      * @var float
      */
-    private $unitPrice;
+    public $unitPrice;
 
     /**
      * @var float
      */
-    private $amount;
+    public $amount;
 
     /**
      * @var bool
      */
-    private $taxed;
+    public $taxed;
 
     /**
      * @var bool
      */
-    private $taxed2;
+    public $taxed2;
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getKind() . ' - ' . $this->getDescription();
     }
-
     /**
      * @return string
      */
@@ -65,7 +67,6 @@ class InvoiceLine
     {
         return $this->kind;
     }
-
     /**
      * @param string $kind
      * @return self
@@ -73,10 +74,8 @@ class InvoiceLine
     public function setKind($kind)
     {
         $this->kind = $kind;
-
         return $this;
     }
-
     /**
      * @return string
      */
@@ -84,7 +83,6 @@ class InvoiceLine
     {
         return $this->description;
     }
-
     /**
      * @param string $description
      * @return self
@@ -92,10 +90,8 @@ class InvoiceLine
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
-
     /**
      * @return string
      */
@@ -103,7 +99,6 @@ class InvoiceLine
     {
         return $this->quantity;
     }
-
     /**
      * @param string $quantity
      * @return self
@@ -111,10 +106,8 @@ class InvoiceLine
     public function setQuantity($quantity)
     {
         $this->quantity = floatval($quantity);
-
         return $this;
     }
-
     /**
      * @return int
      */
@@ -122,7 +115,6 @@ class InvoiceLine
     {
         return $this->unitPrice;
     }
-
     /**
      * @param int $unitPrice
      * @return self
@@ -130,10 +122,8 @@ class InvoiceLine
     public function setUnitPrice($unitPrice)
     {
         $this->unitPrice = $unitPrice;
-
         return $this;
     }
-
     /**
      * @return int
      */
@@ -141,7 +131,6 @@ class InvoiceLine
     {
         return $this->amount;
     }
-
     /**
      * @param int $amount
      * @return self
@@ -149,10 +138,8 @@ class InvoiceLine
     public function setAmount($amount)
     {
         $this->amount = $amount;
-
         return $this;
     }
-
     /**
      * @return bool
      */
@@ -160,7 +147,6 @@ class InvoiceLine
     {
         return $this->taxed;
     }
-
     /**
      * @param bool $taxed
      * @return self
@@ -168,10 +154,8 @@ class InvoiceLine
     public function setTaxed($taxed)
     {
         $this->taxed = $taxed;
-
         return $this;
     }
-
     /**
      * @return bool
      */
@@ -179,7 +163,6 @@ class InvoiceLine
     {
         return $this->taxed2;
     }
-
     /**
      * @param bool $taxed2
      * @return self
@@ -187,7 +170,6 @@ class InvoiceLine
     public function setTaxed2($taxed2)
     {
         $this->taxed2 = $taxed2;
-
         return $this;
     }
 }

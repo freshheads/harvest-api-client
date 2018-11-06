@@ -11,33 +11,33 @@
 
 declare(strict_types=1);
 
-namespace FH\HarvestApiClient\Model\Invoice;
+namespace FH\HarvestApiClient\Model\User;
 
 /**
- * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
+ * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class InvoiceContainer
+class UserContainer
 {
     /**
-     * @var Invoice[]
+     * @var
      */
-    public $invoices;
+    public $users;
 
     /**
      * @return mixed
      */
-    public function getInvoices(): array
+    public function getUsers(): array
     {
-        return $this->invoices;
+        return $this->users;
     }
 
     /**
-     * @param Invoice[] $invoices
+     * @param  User[] $users
      * @return self
      */
-    public function setInvoices(array $invoices)
+    public function setUsers(array $users)
     {
-        $this->invoices = $invoices;
+        $this->users = $users;
 
         return $this;
     }

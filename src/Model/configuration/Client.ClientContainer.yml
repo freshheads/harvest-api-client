@@ -1,6 +1,0 @@
-FH\Bundle\HarvestBundle\Model\Client\ClientContainer:
-    exclusion_policy: ALL
-    properties:
-        clients:
-            type: array<FH\Bundle\HarvestBundle\Model\Client\Client>
-

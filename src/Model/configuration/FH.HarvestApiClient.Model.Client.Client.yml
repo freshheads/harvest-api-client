@@ -1,13 +1,19 @@
-FH\Bundle\HarvestBundle\Model\Client\Client:
+FH\HarvestApiClient\Model\Client\Client:
     exclusion_policy: ALL
     properties:
         id:
             type: integer
         name:
             type: string
+        isActive:
+            type: boolean
         address:
+            type: string
+        currency:
             type: string
         createdAt:
             type: DateTimeImmutable
         updatedAt:
             type: DateTimeImmutable
+
+

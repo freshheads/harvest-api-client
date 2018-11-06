@@ -1,0 +1,17 @@
+FH\HarvestApiClient\Model\Invoice\Line:
+   exclusion_policy: ALL
+   properties:
+       kind:
+           type: string
+       description:
+           type: string
+       quantity:
+           type: integer
+       unitPrice:
+           type: float
+       amount:
+           type: float
+       taxed:
+           type: boolean
+       taxed2:
+           type: boolean

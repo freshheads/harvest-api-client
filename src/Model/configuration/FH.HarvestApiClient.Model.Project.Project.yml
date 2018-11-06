@@ -1,0 +1,50 @@
+FH\HarvestApiClient\Model\Project\Project:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        name:
+            type: string
+        client:
+            type: FH\HarvestApiClient\Model\Client\Client
+        code:
+            type: string
+        isActive:
+            type: boolean
+        isBillable:
+            type: boolean
+        isFixedFee:
+            type: boolean
+        billBy:
+            type: string
+        budget:
+            type: double
+        budgetBy:
+            type: string
+        budgetIsMonthly:
+            type: boolean
+        notifyWhenOVerBudget:
+            type: boolean
+        overBudgetNotificationPercentage:
+            type: double
+        showBudgetToAll:
+            type: boolean
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable
+        startsOn:
+            type: DateTimeImmutable<'Y-m-d'>
+        overBudgetNotificationDate:
+            type: DateTimeImmutable<'Y-m-d'>
+        notes:
+            type: string
+        costBudget:
+            type: double
+        cost_budget_include_expenses:
+            type: boolean
+        hourlyRate:
+            type: double
+        fee:
+            type: double
+

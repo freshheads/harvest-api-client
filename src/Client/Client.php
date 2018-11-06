@@ -51,6 +51,7 @@ final class Client
     private $accountId;
 
     /**
+     * Client constructor.
      * @param HttpClient $client
      * @param MessageFactory $messageFactory
      * @param array $options
@@ -65,14 +66,13 @@ final class Client
     }
 
     /**
-     * @param string $url
+     * @param $url
      * @param string $method
-     * @param string $body
+     * @param null $body
      * @param array $headers
      * @return ResponseInterface
-     * @throws HttpException
      */
-    public function request($url, $method = 'GET', $body = null, array $headers = [])
+    public function request($url, $method = 'GET', $body = null, array $headers = []): ResponseInterface
     {
         $headers['Harvest-Account-ID'] = $this->accountId;
         $headers['Authorization'] = 'Bearer ' . $this->accessToken;
@@ -99,7 +99,7 @@ final class Client
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function get($url, array $parameters = [], array $headers = [])
+    public function get($url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $queryString = $this->buildQueryString($parameters);
 
@@ -113,7 +113,7 @@ final class Client
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function delete($url, array $parameters = [], array $headers = [])
+    public function delete($url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $queryString = $this->buildQueryString($parameters);
 
@@ -127,7 +127,7 @@ final class Client
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function post($url, array $parameters = [], array $headers = [])
+    public function post($url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $body = $this->buildQueryString($parameters);
         $headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -142,7 +142,7 @@ final class Client
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function patch($url, array $parameters = [], array $headers = [])
+    public function patch($url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $body = $this->buildQueryString($parameters);
         $headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -157,7 +157,7 @@ final class Client
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function put($url, array $parameters = [], array $headers = [])
+    public function put($url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $body = $this->buildQueryString($parameters);
         $headers['Content-Type'] = 'application/x-www-form-urlencoded';

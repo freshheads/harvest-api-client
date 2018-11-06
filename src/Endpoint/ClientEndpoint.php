@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Endpoint;
 
-use FH\HarvestApiClient\Client\Client as HarvestClient;
 use FH\HarvestApiClient\Model\Client\Client;
 use FH\HarvestApiClient\Model\Client\ClientContainer;
+use FH\HarvestApiClient\Client\Client as HarvestClient;
 use JMS\Serializer\Serializer;
 
 /**
@@ -33,6 +33,11 @@ class ClientEndpoint
      */
     private $serializer;
 
+    /**
+     * ClientEndpoint constructor.
+     * @param HarvestClient $client
+     * @param Serializer $serializer
+     */
     public function __construct(
         HarvestClient $client,
         Serializer $serializer
@@ -45,41 +50,95 @@ class ClientEndpoint
      * @param int $id
      * @return Client
      */
-    public function find($id)
+    public function find($id): Client
     {
         $response = $this->client->get('/clients/' . urlencode($id));
 
         $data = $response->getBody()->getContents();
 
-        /** Client $client */
         return $this
             ->serializer
             ->deserialize($data, Client::class, 'json');
     }
 
     /**
-     * @return array|Client[]
+     * @param array $filterParameters
+     * @return array
      */
-    public function findAll()
+    private function findAll($filterParameters = []): array
     {
-        $page = 1;
-        $clients = [];
+        $response = $this
+            ->client
+            ->get('/clients', $filterParameters);
 
-        do {
+        $data = $response->getBody()->getContents();
 
-            $response = $this->client->get('/clients', ['page' => $page]);
+        $clientContainer = $this
+            ->serializer
+            ->deserialize($data, ClientContainer::class, 'json');
 
-            $data = $response->getBody()->getContents();
+        return $clientContainer->getClients();
+    }
 
-            /** @var ClientContainer $clientContainer */
-            $clientContainer = $this->serializer
-                ->deserialize($data, ClientContainer::class,'json');
+    /**
+     * @param int $page
+     * @param \DateTimeInterface|null $updatedSince
+     * @return array
+     * @throws \Exception
+     */
+    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null): array
+    {
+        if (!$updatedSince instanceof \DateTimeInterface) {
+            $updatedSince = new \DateTimeImmutable('now');
+        }
 
-            $clients = array_merge($clients, $clientContainer->getClients());
-            $page++;
+        $queryParameters = [
+            'page' => $page,
+            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
+        ];
 
-        } while (count($clientContainer->getClients()) > 0);
+        return $this->findAll($queryParameters);
+    }
 
-        return $clients;
+    /**
+     * @param Client $client
+     * @return Client
+     */
+    public function create(Client $client): Client
+    {
+        $client = $this->serializer->toArray($client);
+
+        $response = $this->client->post('/clients', $client);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, Client::class, 'json');
+    }
+
+    /**
+     * @param Client $client
+     * @return Client
+     */
+    public function update(Client $client): Client
+    {
+        $client = $this->serializer->toArray($client);
+
+        $response = $this->client->patch(sprintf('/clients/%s', $client['id']), $client);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, Client::class, 'json');
+    }
+
+    /**
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $this->client->delete(sprintf('/clients/%s', $id));
     }
 }

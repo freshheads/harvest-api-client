@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Endpoint;
 
+use FH\HarvestApiClient\Model\User\User;
+use FH\HarvestApiClient\Model\User\UserContainer;
 use JMS\Serializer\Serializer;
-use FH\HarvestApiClient\Model\Invoice\Invoice;
-use FH\HarvestApiClient\Model\Invoice\InvoiceContainer;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class InvoiceEndpoint
+class UserEndpoint
 {
     /**
      * @var HarvestClient
@@ -34,7 +34,7 @@ class InvoiceEndpoint
     private $serializer;
 
     /**
-     * InvoiceEndpoint constructor.
+     * ClientEndpoint constructor.
      * @param HarvestClient $client
      * @param Serializer $serializer
      */
@@ -48,17 +48,17 @@ class InvoiceEndpoint
 
     /**
      * @param int $id
-     * @return Invoice
+     * @return User
      */
-    public function find($id): Invoice
+    public function find($id): User
     {
-        $response = $this->client->get('/invoices/' . urlencode($id));
+        $response = $this->client->get('/users/' . urlencode($id));
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Invoice::class, 'json');
+            ->deserialize($data, User::class, 'json');
     }
 
     /**
@@ -69,15 +69,15 @@ class InvoiceEndpoint
     {
         $response = $this
             ->client
-            ->get('/invoices', $filterParameters);
+            ->get('/users', $filterParameters);
 
         $data = $response->getBody()->getContents();
 
-        $invoiceContainer = $this
+        $userContainer = $this
             ->serializer
-            ->deserialize($data, InvoiceContainer::class, 'json');
+            ->deserialize($data, UserContainer::class, 'json');
 
-        return $invoiceContainer->getInvoices();
+        return $userContainer->getUsers();
     }
 
     /**
@@ -101,37 +101,37 @@ class InvoiceEndpoint
     }
 
     /**
-     * @param Invoice $invoice
-     * @return Invoice
+     * @param User $user
+     * @return User
      */
-    public function create(Invoice $invoice): Invoice
+    public function create(User $user): User
     {
-        $invoice = $this->serializer->toArray($invoice);
+        $user = $this->serializer->toArray($user);
 
-        $response = $this->client->post('/invoices', $invoice);
+        $response = $this->client->post('/users', $user);
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Invoice::class, 'json');
+            ->deserialize($data, User::class, 'json');
     }
 
     /**
-     * @param Invoice $invoice
-     * @return Invoice
+     * @param User $user
+     * @return string
      */
-    public function update(Invoice $invoice): Invoice
+    public function update(User $user)
     {
-        $invoice = $this->serializer->toArray($invoice);
+        $user = $this->serializer->toArray($user);
 
-        $response = $this->client->patch(sprintf('/invoices/%s', $invoice['id']), $invoice);
+        $response = $this->client->patch(sprintf('/users/%s', $user['id']), $user);
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Invoice::class, 'json');
+            ->deserialize($data, User::class, 'json');
     }
 
     /**
@@ -139,6 +139,6 @@ class InvoiceEndpoint
      */
     public function delete($id)
     {
-        $this->client->delete(sprintf('/invoices/%s', $id));
+        $this->client->delete(sprintf('/users/%s', $id));
     }
 }
