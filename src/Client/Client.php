@@ -25,6 +25,8 @@ final class Client
 {
     const DEFAULT_BASE_URL = 'https://api.harvestapp.com/api/v2';
 
+    const DEFAULT_USER_AGENT = 'Freshheads Harvest API Client (https://packagist.org/packages/freshheads/harvest-api-client)';
+
     /**
      * @var HttpClient
      */
@@ -51,7 +53,11 @@ final class Client
     private $accountId;
 
     /**
-     * Client constructor.
+     * @var string
+     */
+    private $userAgent;
+
+    /**
      * @param HttpClient $client
      * @param MessageFactory $messageFactory
      * @param array $options
@@ -63,19 +69,21 @@ final class Client
         $this->accessToken = $options['access_token'];
         $this->accountId = $options['account_id'];
         $this->baseUrl = $options['base_url'] ?? self::DEFAULT_BASE_URL;
+        $this->userAgent = $options['user_agent'] ?? self::DEFAULT_USER_AGENT;
     }
 
     /**
      * @param $url
      * @param string $method
-     * @param null $body
-     * @param array $headers
+     * @param string $body
+     * @param string[] $headers
      * @return ResponseInterface
      */
-    public function request($url, $method = 'GET', $body = null, array $headers = []): ResponseInterface
+    public function request(string $url, string $method = 'GET', string $body = null, array $headers = []): ResponseInterface
     {
         $headers['Harvest-Account-ID'] = $this->accountId;
         $headers['Authorization'] = 'Bearer ' . $this->accessToken;
+        $headers['User-Agent'] = $this->userAgent;
 
         if (!array_key_exists('Accept', $headers)) {
             $headers['Accept'] = 'application/json';
@@ -95,11 +103,11 @@ final class Client
     /**
      * @param string $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function get($url, array $parameters = [], array $headers = []): ResponseInterface
+    public function get(string $url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $queryString = $this->buildQueryString($parameters);
 
@@ -109,11 +117,11 @@ final class Client
     /**
      * @param string $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function delete($url, array $parameters = [], array $headers = []): ResponseInterface
+    public function delete(string $url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $queryString = $this->buildQueryString($parameters);
 
@@ -127,7 +135,7 @@ final class Client
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function post($url, array $parameters = [], array $headers = []): ResponseInterface
+    public function post(string $url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $body = $this->buildQueryString($parameters);
         $headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -137,8 +145,20 @@ final class Client
 
     /**
      * @param string $url
+     * @param string $json JSON string
+     * @param string[] $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
+    public function postJson(string $url, string $json, array $headers = []): ResponseInterface
+    {
+        return $this->request($this->buildUrl($url), 'POST', $json, $headers);
+    }
+
+    /**
+     * @param string $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -152,17 +172,14 @@ final class Client
 
     /**
      * @param string $url
-     * @param array $parameters
-     * @param array $headers
+     * @param string $json JSON string
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
-    public function put($url, array $parameters = [], array $headers = []): ResponseInterface
+    public function patchJson($url, string $json, array $headers = []): ResponseInterface
     {
-        $body = $this->buildQueryString($parameters);
-        $headers['Content-Type'] = 'application/x-www-form-urlencoded';
-
-        return $this->request($this->buildUrl($url), 'PUT', $body, $headers);
+        return $this->request($this->buildUrl($url), 'PATCH', $json, $headers);
     }
 
     /**
