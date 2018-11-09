@@ -19,7 +19,10 @@ use FH\HarvestApiClient\Client\Client as HarvestClient;
 use JMS\Serializer\Serializer;
 
 /**
+ * @author Joris van de Sande <joris.van.de.sande@freshheads.com>
  * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
+ *
+ * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#update-a-client
  */
 class ClientEndpoint
 {
@@ -49,10 +52,12 @@ class ClientEndpoint
     /**
      * @param int $id
      * @return Client
+     *
+     * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#retrieve-a-client
      */
-    public function find($id): Client
+    public function find(int $id): Client
     {
-        $response = $this->client->get('/clients/' . urlencode($id));
+        $response = $this->client->get('/clients/' . $id);
 
         $data = $response->getBody()->getContents();
 
@@ -62,14 +67,16 @@ class ClientEndpoint
     }
 
     /**
-     * @param array $filterParameters
-     * @return array
+     * @param array $parameters
+     * @return Client[]
+     *
+     * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#list-all-clients
      */
-    private function findAll($filterParameters = []): array
+    public function list(array $parameters = []): array
     {
         $response = $this
             ->client
-            ->get('/clients', $filterParameters);
+            ->get('/clients', $parameters);
 
         $data = $response->getBody()->getContents();
 
@@ -81,34 +88,14 @@ class ClientEndpoint
     }
 
     /**
-     * @param int $page
-     * @param \DateTimeInterface|null $updatedSince
-     * @return array
-     * @throws \Exception
-     */
-    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null): array
-    {
-        if (!$updatedSince instanceof \DateTimeInterface) {
-            $updatedSince = new \DateTimeImmutable('now');
-        }
-
-        $queryParameters = [
-            'page' => $page,
-            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
-        ];
-
-        return $this->findAll($queryParameters);
-    }
-
-    /**
      * @param Client $client
      * @return Client
+     *
+     * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#create-a-client
      */
     public function create(Client $client): Client
     {
-        $client = $this->serializer->toArray($client);
-
-        $response = $this->client->post('/clients', $client);
+        $response = $this->client->postJson('/clients', $this->serializer->serialize($client, 'json'));
 
         $data = $response->getBody()->getContents();
 
@@ -120,12 +107,15 @@ class ClientEndpoint
     /**
      * @param Client $client
      * @return Client
+     *
+     * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#update-a-client
      */
     public function update(Client $client): Client
     {
-        $client = $this->serializer->toArray($client);
-
-        $response = $this->client->patch(sprintf('/clients/%s', $client['id']), $client);
+        $response = $this->client->patchJson(
+            sprintf('/clients/%s', $client->getId()),
+            $this->serializer->serialize($client, 'json')
+        );
 
         $data = $response->getBody()->getContents();
 
@@ -135,9 +125,9 @@ class ClientEndpoint
     }
 
     /**
-     * @param $id
+     * @param int $id
      */
-    public function delete($id)
+    public function delete(int $id): void
     {
         $this->client->delete(sprintf('/clients/%s', $id));
     }

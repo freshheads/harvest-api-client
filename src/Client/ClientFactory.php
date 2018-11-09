@@ -70,7 +70,9 @@ final class ClientFactory
         ]);
 
         $optionsResolver->setRequired(['access_token', 'account_id']);
+        $optionsResolver->setDefined(['user_agent']);
         $optionsResolver->addAllowedTypes('access_token', 'string');
+        $optionsResolver->addAllowedTypes('user_agent', 'string');
         $optionsResolver->addAllowedTypes('account_id', ['string', 'int']);
 
         return $optionsResolver->resolve($options);

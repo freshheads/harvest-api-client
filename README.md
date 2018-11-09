@@ -16,20 +16,18 @@ Harvest API Client works with PHP 7.1.0 or up. This library depends on the [HTTP
 Installation
 ------------
 
-Harvest API Client can easily be installed using [Composer](https://getcomposer.org/):
+Harvest API Client can easily be installed using [Composer](https://getcomposer.org/).
+You must have a [php-http/client-implementation](https://packagist.org/providers/php-http/client-implementation) compatible client (+ adapter) installed to be able to make requests.
+You can run the following command, to install Guzzle6 and it's php-http adapter.
 
 ```bash
-composer require 'freshheads/harvest-api-client ^1.0@dev'
+composer require 'freshheads/harvest-api-client ^1.0@dev' 'php-http/guzzle6-adapter'
 ```
+
+You can replace `php-http/guzzle6-adapter` with any other compatible client implementation.
 
 Usage
 -----
-
-You should have a php-http plug compatible client (+ adapter) installed to be able to run this example. You can run the following command, to install Guzzle6 and it's php-http adapter.
-
-```bash
-composer require php-http/guzzle6-adapter
-```
 
 Instantiate the client and replace the configuration with your personal credentials:
 
@@ -42,7 +40,10 @@ use FH\HarvestApiClient\Client\ClientFactory;
 // API Client configuration
 $clientConfiguration =
     'access_token' => 'YourAccessToken',
-    'client_id'    => 12345678 // Your harvest client ID
+    // Your harvest client ID
+    'client_id'    => 12345678,
+    // Harvest asks you to customize the user agent header, so that they can contact you in case you're doing something wrong
+    'user_agent'   => 'My Application (my@email.com)'
 ];
 
 // In this example we made use of the Guzzle6 as HTTPClient in combination with an HTTPPlug compatible adapter.
