@@ -14,154 +14,127 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Model\Client;
 
 /**
+ * @author Joris van de Sande <joris.van.de.sande@freshheads.com>
  * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
  */
 class Client
 {
     /**
-     * @var
+     * @var int
      */
     private $id;
 
     /**
-     * @var
+     * @var string
      */
     private $name;
 
     /**
-     * @var
+     * @var bool
      */
     private $isActive;
 
     /**
-     * @var
+     * @var string
      */
     private $address;
 
     /**
-     * @var
+     * @var string
      */
     private $currency;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $createdAt;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $updatedAt;
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
+    public function setId(int $id = null): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name): void
+    public function setName(string $name = null): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsActive()
+    public function getIsActive(): ?bool
     {
         return $this->isActive;
     }
 
-    /**
-     * @param mixed $isActive
-     */
-    public function setIsActive($isActive): void
+    public function setIsActive(bool $isActive = null): self
     {
         $this->isActive = $isActive;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAddress()
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    /**
-     * @param mixed $address
-     */
-    public function setAddress($address): void
+    public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCurrency()
+    public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * @param mixed $currency
-     */
-    public function setCurrency($currency): void
+    public function setCurrency(string $currency = null): self
     {
         $this->currency = $currency;
+
+        return $this;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getCreatedAt(): \DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTimeInterface $createdAt
-     */
-    public function setCreatedAt(\DateTimeInterface $createdAt): void
+    public function setCreatedAt(\DateTimeImmutable $createdAt = null): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param mixed $updatedAt
-     */
-    public function setUpdatedAt($updatedAt): void
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }
