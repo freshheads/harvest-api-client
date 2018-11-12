@@ -1,5 +1,5 @@
 FH\HarvestApiClient\Model\Invoice\InvoiceCollection:
     exclusion_policy: ALL
     properties:
-        projects:
+        invoices:
             type: array<FH\HarvestApiClient\Model\Invoice\Invoice>

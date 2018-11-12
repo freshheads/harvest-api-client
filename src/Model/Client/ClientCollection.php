@@ -29,7 +29,7 @@ class ClientCollection extends PaginatedCollection
     /**
      * @return Client[]
      */
-    public function getClients()
+    public function getClients(): array
     {
         return $this->clients;
     }
@@ -38,14 +38,14 @@ class ClientCollection extends PaginatedCollection
      * @param  Client[] $clients
      * @return self
      */
-    public function setClients(array $clients)
+    public function setClients(array $clients): self
     {
         $this->clients = $clients;
 
         return $this;
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->clients);
     }

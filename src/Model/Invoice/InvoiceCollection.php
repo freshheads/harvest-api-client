@@ -24,10 +24,10 @@ class InvoiceCollection extends PaginatedCollection
     /**
      * @var Invoice[]
      */
-    public $invoices;
+    private $invoices = [];
 
     /**
-     * @return mixed
+     * @return Invoice[]
      */
     public function getInvoices(): array
     {
@@ -38,14 +38,14 @@ class InvoiceCollection extends PaginatedCollection
      * @param Invoice[] $invoices
      * @return self
      */
-    public function setInvoices(array $invoices)
+    public function setInvoices(array $invoices): self
     {
         $this->invoices = $invoices;
 
         return $this;
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->invoices);
     }

@@ -109,7 +109,7 @@ class InvoiceEndpoint
      */
     public function update(Invoice $invoice): Invoice
     {
-        $response = $this->client->patch(
+        $response = $this->client->patchJson(
             sprintf('/invoices/%s', $invoice->getId()),
             $this->serializer->serialize($invoice, 'json')
         );
