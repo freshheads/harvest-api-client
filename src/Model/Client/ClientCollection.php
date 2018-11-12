@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Client;
 
+use FH\HarvestApiClient\Model\Collection\PaginatedCollection;
+use Traversable;
+
 /**
  * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
  */
-class ClientContainer
+class ClientCollection extends PaginatedCollection
 {
     /**
      * @var Client[]
@@ -40,5 +43,10 @@ class ClientContainer
         $this->clients = $clients;
 
         return $this;
+    }
+
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->clients);
     }
 }

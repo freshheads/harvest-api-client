@@ -1,0 +1,5 @@
+FH\HarvestApiClient\Model\Client\ClientCollection:
+    exclusion_policy: ALL
+    properties:
+        clients:
+            type: array<FH\HarvestApiClient\Model\Client\Client>

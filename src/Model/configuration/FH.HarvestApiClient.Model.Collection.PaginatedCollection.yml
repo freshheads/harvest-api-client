@@ -1,0 +1,17 @@
+FH\HarvestApiClient\Model\Collection\PaginatedCollection:
+    exclusion_policy: ALL
+    properties:
+        perPage:
+            type: integer
+        totalPages:
+            type: integer
+        totalEntries:
+            type: integer
+        nextPage:
+            type: integer
+        previousPage:
+            type: integer
+        page:
+            type: integer
+        links:
+            type: array

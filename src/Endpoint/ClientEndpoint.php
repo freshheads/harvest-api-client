@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Endpoint;
 
 use FH\HarvestApiClient\Model\Client\Client;
-use FH\HarvestApiClient\Model\Client\ClientContainer;
+use FH\HarvestApiClient\Model\Client\ClientCollection;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 use JMS\Serializer\Serializer;
 
@@ -55,7 +55,7 @@ class ClientEndpoint
      *
      * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#retrieve-a-client
      */
-    public function find(int $id): Client
+    public function retrieve(int $id): Client
     {
         $response = $this->client->get('/clients/' . $id);
 
@@ -68,11 +68,11 @@ class ClientEndpoint
 
     /**
      * @param array $parameters
-     * @return Client[]
+     * @return ClientCollection
      *
      * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#list-all-clients
      */
-    public function list(array $parameters = []): array
+    public function list(array $parameters = []): ClientCollection
     {
         $response = $this
             ->client
@@ -80,11 +80,11 @@ class ClientEndpoint
 
         $data = $response->getBody()->getContents();
 
-        $clientContainer = $this
+        $collection = $this
             ->serializer
-            ->deserialize($data, ClientContainer::class, 'json');
+            ->deserialize($data, ClientCollection::class, 'json');
 
-        return $clientContainer->getClients();
+        return $collection;
     }
 
     /**

@@ -35,6 +35,8 @@ FH\HarvestApiClient\Model\Project\Project:
             type: DateTimeImmutable
         startsOn:
             type: DateTimeImmutable<'Y-m-d'>
+        endsOn:
+            type: DateTimeImmutable<'Y-m-d'>
         overBudgetNotificationDate:
             type: DateTimeImmutable<'Y-m-d'>
         notes:

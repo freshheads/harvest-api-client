@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Project;
 
+use FH\HarvestApiClient\Model\Collection\PaginatedCollection;
+use Traversable;
+
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ProjectContainer
+class ProjectCollection extends PaginatedCollection
 {
     /**
      * @var
@@ -40,5 +43,10 @@ class ProjectContainer
         $this->projects = $projects;
 
         return $this;
+    }
+
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->projects);
     }
 }

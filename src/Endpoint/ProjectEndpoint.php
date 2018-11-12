@@ -15,7 +15,7 @@ namespace FH\HarvestApiClient\Endpoint;
 
 use JMS\Serializer\Serializer;
 use FH\HarvestApiClient\Model\Project\Project;
-use FH\HarvestApiClient\Model\Project\ProjectContainer;
+use FH\HarvestApiClient\Model\Project\ProjectCollection;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 
 /**
@@ -49,10 +49,12 @@ class ProjectEndpoint
     /**
      * @param int $id
      * @return Project
+     *
+     * @link https://help.getharvest.com/api-v2/projects-api/projects/projects/#retrieve-a-project
      */
-    public function find($id): Project
+    public function retrieve(int $id): Project
     {
-        $response = $this->client->get('/projects/' . urlencode($id));
+        $response = $this->client->get('/projects/' . $id);
 
         $data = $response->getBody()->getContents();
 
@@ -62,53 +64,36 @@ class ProjectEndpoint
     }
 
     /**
-     * @param array $filterParameters
-     * @return array
+     * @param array $parameters
+     * @return ProjectCollection
+     *
+     * @link https://help.getharvest.com/api-v2/projects-api/projects/projects/#list-all-projects
      */
-    private function findAll($filterParameters = []): array
+    public function list(array $parameters = []): ProjectCollection
     {
         $response = $this
             ->client
-            ->get('/projects', $filterParameters);
+            ->get('/projects', $parameters);
 
         $data = $response->getBody()->getContents();
 
-        $projectContainer = $this
+        $collection = $this
             ->serializer
-            ->deserialize($data, ProjectContainer::class, 'json');
+            ->deserialize($data, ProjectCollection::class, 'json');
 
-        return $projectContainer->getProjects();
+        return $collection;
     }
 
-    /**
-     * @param int $page
-     * @param \DateTimeInterface|null $updatedSince
-     * @return array
-     * @throws \Exception
-     */
-    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null): array
-    {
-        if (!$updatedSince instanceof \DateTimeInterface) {
-            $updatedSince = new \DateTimeImmutable('now');
-        }
-
-        $queryParameters = [
-            'page' => $page,
-            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
-        ];
-
-        return $this->findAll($queryParameters);
-    }
 
     /**
      * @param Project $project
      * @return Project
+     *
+     * @link https://help.getharvest.com/api-v2/projects-api/projects/projects/#create-a-project
      */
     public function create(Project $project): Project
     {
-        $project = $this->serializer->toArray($project);
-
-        $response = $this->client->post('/projects', $project);
+        $response = $this->client->postJson('/projects', $this->serializer->serialize($project, 'json'));
 
         $data = $response->getBody()->getContents();
 
@@ -120,12 +105,16 @@ class ProjectEndpoint
     /**
      * @param Project $project
      * @return Project
+     *
+     * @link https://help.getharvest.com/api-v2/projects-api/projects/projects/#update-a-project
      */
     public function update(Project $project): Project
     {
-        $project = $this->serializer->toArray($project);
 
-        $response = $this->client->patch(sprintf('/projects/%s', $project['id']), $project);
+        $response = $this->client->patchJson(
+            sprintf('/projects/%s', $project->getId()),
+            $this->serializer->serialize($project, 'json')
+        );
 
         $data = $response->getBody()->getContents();
 
@@ -135,9 +124,10 @@ class ProjectEndpoint
     }
 
     /**
-     * @param $id
+     * @param int $id
+     * @link https://help.getharvest.com/api-v2/projects-api/projects/projects/#delete-a-project
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         $this->client->delete(sprintf('/projects/%s', $id));
     }
