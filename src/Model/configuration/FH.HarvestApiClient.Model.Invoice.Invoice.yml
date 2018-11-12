@@ -52,5 +52,5 @@ FH\HarvestApiClient\Model\Invoice\Invoice:
         subject:
             type: string
         lineItems:
-            type: array<FH\HarvestApiClient\Model\Invoice\Line>
+            type: array<FH\HarvestApiClient\Model\Invoice\InvoiceLine>
             nullable: true

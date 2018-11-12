@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Freshheads Harvest API Client library.
  *
@@ -7,11 +8,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Invoice;
-
-use FH\HarvestApiClient\Model\Client\Client;
 
 /**
  * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
@@ -26,123 +26,120 @@ class Invoice
     const STATE_PAST_DUE = 'pastdue';
 
     /**
-     * @var
+     * @var int
      */
     private $id;
 
     /**
-     * @var
+     * @var string
      */
     private $clientKey;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $periodStart;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $periodEnd;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $issueDate;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $sentAt;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $dueDate;
 
     /**
-     * @var
+     * @var float
      */
     private $amount;
 
     /**
-     * @var
+     * @var string
      */
     private $state;
 
     /**
-     * @var
+     * @var string
      */
     private $notes;
 
     /**
-     * @var
+     * @var int
      */
     private $dueAmount;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $createdAt;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     private $updatedAt;
 
     /**
-     * @var
+     * @var int
      */
     private $tax;
 
     /**
-     * @var
+     * @var float
      */
     private $taxAmount;
 
     /**
-     * @var
+     * @var int
      */
     private $tax2;
 
     /**
-     * @var
+     * @var float
      */
     private $tax2Amount;
 
     /**
-     * @var
+     * @var string
      */
     private $subject;
 
     /**
-     * @var array
+     * @var InvoiceLine[]
      */
     private $lineItems = [];
 
     /**
-     * @var
+     * @var string
      */
     private $number;
 
     /**
-     * @var
+     * @var Client
      */
     private $client;
 
     /**
-     * @var
+     * @var float
      */
     private $discount;
 
     /**
-     * @var
+     * @var float
      */
-    public $discountAmount;
+    private $discountAmount;
 
-    /**
-     * @return string
-     */
     public function __toString()
     {
         return (string) $this->getId();
@@ -151,7 +148,7 @@ class Invoice
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -160,16 +157,17 @@ class Invoice
      * @param int $id
      * @return self
      */
-    public function setId($id)
+    public function setId(int $id = null): self
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getClientKey()
+    public function getClientKey(): ?string
     {
         return $this->clientKey;
     }
@@ -178,16 +176,17 @@ class Invoice
      * @param string $clientKey
      * @return self
      */
-    public function setClientKey($clientKey)
+    public function setClientKey($clientKey): self
     {
         $this->clientKey = $clientKey;
+
         return $this;
     }
 
     /**
      * @return Client
      */
-    public function getClient()
+    public function getClient(): ?Client
     {
         return $this->client;
     }
@@ -195,87 +194,91 @@ class Invoice
     /**
      * @param Client $client
      */
-    public function setClient(Client $client)
+    public function setClient(Client $client = null): self
     {
         $this->client = $client;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getPeriodStart()
+    public function getPeriodStart(): ?\DateTimeImmutable
     {
         return $this->periodStart;
     }
 
     /**
-     * @param \DateTimeInterface $periodStart
+     * @param \DateTimeImmutable $periodStart
      * @return self
      */
-    public function setPeriodStart(\DateTimeInterface $periodStart = null)
+    public function setPeriodStart(\DateTimeImmutable $periodStart = null): self
     {
         $this->periodStart = $periodStart;
+
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getPeriodEnd()
+    public function getPeriodEnd(): ?\DateTimeImmutable
     {
         return $this->periodEnd;
     }
 
     /**
-     * @param \DateTimeInterface $periodEnd
+     * @param \DateTimeImmutable $periodEnd
      * @return self
      */
-    public function setPeriodEnd(\DateTimeInterface $periodEnd)
+    public function setPeriodEnd(\DateTimeImmutable $periodEnd = null): self
     {
         $this->periodEnd = $periodEnd;
+
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getIssueDate()
+    public function getIssueDate(): ?\DateTimeImmutable
     {
         return $this->issueDate;
     }
 
     /**
-     * @param \DateTimeInterface $issueDate
+     * @param \DateTimeImmutable $issueDate
      * @return self
      */
-    public function setIssueDate(\DateTimeInterface $issueDate)
+    public function setIssueDate(\DateTimeImmutable $issueDate = null): self
     {
         $this->issueDate = $issueDate;
+
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getDueDate()
+    public function getDueDate(): ?\DateTimeImmutable
     {
         return $this->dueDate;
     }
 
     /**
-     * @param \DateTimeInterface $dueDate
+     * @param \DateTimeImmutable $dueDate
      * @return self
      */
-    public function setDueDate(\DateTimeInterface $dueDate)
+    public function setDueDate(\DateTimeImmutable $dueDate = null): self
     {
         $this->dueDate = $dueDate;
+
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getAmount()
+    public function getAmount(): ?float
     {
         return $this->amount;
     }
@@ -284,16 +287,17 @@ class Invoice
      * @param float $amount
      * @return self
      */
-    public function setAmount($amount)
+    public function setAmount(float $amount = null): self
     {
         $this->amount = $amount;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getState()
+    public function getState(): ?string
     {
         return $this->state;
     }
@@ -302,16 +306,17 @@ class Invoice
      * @param string $state
      * @return self
      */
-    public function setState($state)
+    public function setState(string $state = null): self
     {
         $this->state = $state;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getNotes()
+    public function getNotes(): ?string
     {
         return $this->notes;
     }
@@ -320,16 +325,17 @@ class Invoice
      * @param string $notes
      * @return self
      */
-    public function setNotes($notes)
+    public function setNotes(string $notes = null): self
     {
         $this->notes = $notes;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getDueAmount()
+    public function getDueAmount(): ?int
     {
         return $this->dueAmount;
     }
@@ -338,77 +344,76 @@ class Invoice
      * @param int $dueAmount
      * @return self
      */
-    public function setDueAmount($dueAmount)
+    public function setDueAmount(int $dueAmount = null): self
     {
         $this->dueAmount = $dueAmount;
+
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
     /**
-     * @param \DateTimeInterface $createdAt
+     * @param \DateTimeImmutable $createdAt
      * @return self
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt)
+    public function setCreatedAt(\DateTimeImmutable $createdAt = null): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param \DateTimeInterface $updatedAt
+     * @param \DateTimeImmutable $updatedAt
      * @return self
      */
-    public function setUpdatedAt(\DateTimeInterface $updatedAt)
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeImmutable
      */
-    public function getSentAt()
+    public function getSentAt(): ?\DateTimeImmutable
     {
         return $this->sentAt;
     }
 
     /**
-     * @param \DateTimeInterface $sentAt
+     * @param \DateTimeImmutable $sentAt
      */
-    public function setSentAt(\DateTimeInterface $sentAt)
+    public function setSentAt(\DateTimeImmutable $sentAt = null): self
     {
         $this->sentAt = $sentAt;
     }
 
-    /**
-     * @return bool
-     * @throws \Exception
-     */
-    public function isSent()
+    public function isSent(): bool
     {
-        return $this->sentAt instanceof \DateTimeInterface && $this->sentAt < new \DateTimeImmutable();
+        return $this->sentAt instanceof \DateTimeImmutable && $this->sentAt < new \DateTimeImmutable();
     }
 
     /**
      * @return int
      */
-    public function getTax()
+    public function getTax(): ?int
     {
         return $this->tax;
     }
@@ -417,16 +422,17 @@ class Invoice
      * @param int $tax
      * @return self
      */
-    public function setTax($tax)
+    public function setTax(int $tax = null): self
     {
         $this->tax = $tax;
+
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getTaxAmount()
+    public function getTaxAmount(): ?float
     {
         return $this->taxAmount;
     }
@@ -435,16 +441,17 @@ class Invoice
      * @param float $taxAmount
      * @return self
      */
-    public function setTaxAmount($taxAmount)
+    public function setTaxAmount(float $taxAmount = null): self
     {
         $this->taxAmount = $taxAmount;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getTax2()
+    public function getTax2(): ?int
     {
         return $this->tax2;
     }
@@ -453,16 +460,17 @@ class Invoice
      * @param int $tax2
      * @return self
      */
-    public function setTax2($tax2)
+    public function setTax2(int $tax2 = null): self
     {
         $this->tax2 = $tax2;
+
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getTax2Amount()
+    public function getTax2Amount(): ?float
     {
         return $this->tax2Amount;
     }
@@ -471,16 +479,17 @@ class Invoice
      * @param float $tax2Amount
      * @return self
      */
-    public function setTax2Amount($tax2Amount)
+    public function setTax2Amount(float $tax2Amount = null): self
     {
         $this->tax2Amount = $tax2Amount;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): ?string
     {
         return $this->subject;
     }
@@ -489,16 +498,17 @@ class Invoice
      * @param string $subject
      * @return self
      */
-    public function setSubject($subject)
+    public function setSubject(string $subject = null): self
     {
         $this->subject = $subject;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getNumber()
+    public function getNumber(): ?string
     {
         return $this->number;
     }
@@ -506,7 +516,7 @@ class Invoice
     /**
      * @param string $number
      */
-    public function setNumber($number)
+    public function setNumber(string $number = null): self
     {
         $this->number = $number;
     }
@@ -522,9 +532,11 @@ class Invoice
     /**
      * @param float $discount
      */
-    public function setDiscount(float $discount = null): void
+    public function setDiscount(float $discount = null): self
     {
         $this->discount = $discount;
+
+        return $this;
     }
 
     /**
@@ -538,42 +550,46 @@ class Invoice
     /**
      * @param float $discountAmount
      */
-    public function setDiscountAmount(float $discountAmount = null): void
+    public function setDiscountAmount(float $discountAmount = null): self
     {
         $this->discountAmount = $discountAmount;
+
+        return $this;
     }
 
-    /**
-     * @return array
+     /**
+     * @return InvoiceLine[]
      */
-    public function getLineItems()
+    public function getLineItems(): ?array
     {
         return $this->lineItems;
     }
 
     /**
-     * @param array $lineItems
+     * @param InvoiceLine[] $lineItems
      * @return self
      */
-    public function setLineItems($lineItems)
+    public function setLineItems(array $lineItems): self
     {
         $this->lineItems = [];
+
         foreach ($lineItems as $line) {
             $this->addLine($line);
         }
+
         return $this;
     }
 
     /**
-     * @param Line $line
+     * @param InvoiceLine $line
      * @return self
      */
-    public function addLine(Line $line)
+    public function addLine(InvoiceLine $line): self
     {
         if ($line->getKind() !== null) {
             $this->lineItems[] = $line->setInvoice($this);
         }
+
         return $this;
     }
 }
-

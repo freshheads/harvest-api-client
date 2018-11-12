@@ -14,162 +14,181 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Model\Invoice;
 
 /**
- * @author Lars Janssen <lars.janssen@freshheads.com>
+ * @author Joris van de Sande <joris.van.de.sande@freshheads.com>
+ * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
  */
-class Line
+class InvoiceLine
 {
     /**
      * @var string
      */
-    public $kind;
+    private $kind;
 
     /**
      * @var string
      */
-    public $description;
+    private $description;
 
     /**
      * @var int
      */
-    public $quantity;
+    private $quantity;
 
     /**
      * @var float
      */
-    public $unitPrice;
+    private $unitPrice;
 
     /**
      * @var float
      */
-    public $amount;
+    private $amount;
 
     /**
      * @var bool
      */
-    public $taxed;
+    private $taxed;
 
     /**
      * @var bool
      */
-    public $taxed2;
+    private $taxed2;
 
-    /**
-     * @return string
-     */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getKind() . ' - ' . $this->getDescription();
     }
+
     /**
      * @return string
      */
-    public function getKind()
+    public function getKind(): ?string
     {
         return $this->kind;
     }
+
     /**
      * @param string $kind
      * @return self
      */
-    public function setKind($kind)
+    public function setKind(string $kind = null): self
     {
         $this->kind = $kind;
+
         return $this;
     }
+
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
+
     /**
      * @param string $description
      * @return self
      */
-    public function setDescription($description)
+    public function setDescription(string $description = null): self
     {
         $this->description = $description;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return int
      */
-    public function getQuantity()
+    public function getQuantity(): ?int
     {
         return $this->quantity;
     }
+
     /**
-     * @param string $quantity
+     * @param int $quantity
      * @return self
      */
-    public function setQuantity($quantity)
+    public function setQuantity(int $quantity = null): self
     {
-        $this->quantity = floatval($quantity);
+        $this->quantity = $quantity;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return float
      */
-    public function getUnitPrice()
+    public function getUnitPrice(): ?float
     {
         return $this->unitPrice;
     }
+
     /**
-     * @param int $unitPrice
+     * @param float $unitPrice
      * @return self
      */
-    public function setUnitPrice($unitPrice)
+    public function setUnitPrice(float $unitPrice = null): self
     {
         $this->unitPrice = $unitPrice;
+
         return $this;
     }
+
     /**
      * @return int
      */
-    public function getAmount()
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
+
     /**
      * @param int $amount
      * @return self
      */
-    public function setAmount($amount)
+    public function setAmount(int $amount = null): self
     {
         $this->amount = $amount;
+
         return $this;
     }
+
     /**
      * @return bool
      */
-    public function isTaxed()
+    public function isTaxed(): ?bool
     {
         return $this->taxed;
     }
+
     /**
      * @param bool $taxed
      * @return self
      */
-    public function setTaxed($taxed)
+    public function setTaxed(bool $taxed = null): self
     {
         $this->taxed = $taxed;
+
         return $this;
     }
+
     /**
      * @return bool
      */
-    public function isTaxed2()
+    public function isTaxed2(): ?bool
     {
         return $this->taxed2;
     }
+
     /**
      * @param bool $taxed2
      * @return self
      */
-    public function setTaxed2($taxed2)
+    public function setTaxed2(bool $taxed2 = null): self
     {
         $this->taxed2 = $taxed2;
+
         return $this;
     }
 }

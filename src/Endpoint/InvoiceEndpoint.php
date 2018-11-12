@@ -15,7 +15,7 @@ namespace FH\HarvestApiClient\Endpoint;
 
 use JMS\Serializer\Serializer;
 use FH\HarvestApiClient\Model\Invoice\Invoice;
-use FH\HarvestApiClient\Model\Invoice\InvoiceContainer;
+use FH\HarvestApiClient\Model\Invoice\InvoiceCollection;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 
 /**
@@ -49,10 +49,12 @@ class InvoiceEndpoint
     /**
      * @param int $id
      * @return Invoice
+     *
+     * @link https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#retrieve-an-invoice
      */
-    public function find($id): Invoice
+    public function retrieve(int $id): Invoice
     {
-        $response = $this->client->get('/invoices/' . urlencode($id));
+        $response = $this->client->get('/invoices/' . $id);
 
         $data = $response->getBody()->getContents();
 
@@ -62,53 +64,35 @@ class InvoiceEndpoint
     }
 
     /**
-     * @param array $filterParameters
-     * @return array
+     * @param array $parameters
+     * @return InvoiceCollection
+     *
+     * @link https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#list-all-invoices
      */
-    private function findAll($filterParameters = []): array
+    public function list(array $parameters = []): InvoiceCollection
     {
         $response = $this
             ->client
-            ->get('/invoices', $filterParameters);
+            ->get('/invoices', $parameters);
 
         $data = $response->getBody()->getContents();
 
-        $invoiceContainer = $this
+        $collection = $this
             ->serializer
-            ->deserialize($data, InvoiceContainer::class, 'json');
+            ->deserialize($data, InvoiceCollection::class, 'json');
 
-        return $invoiceContainer->getInvoices();
-    }
-
-    /**
-     * @param int $page
-     * @param \DateTimeInterface|null $updatedSince
-     * @return array
-     * @throws \Exception
-     */
-    public function findPaged($page = 1, \DateTimeInterface $updatedSince = null): array
-    {
-        if (!$updatedSince instanceof \DateTimeInterface) {
-            $updatedSince = new \DateTimeImmutable('now');
-        }
-
-        $queryParameters = [
-            'page' => $page,
-            'updated_since' => $updatedSince->format(\DateTime::ISO8601),
-        ];
-
-        return $this->findAll($queryParameters);
+        return $collection;
     }
 
     /**
      * @param Invoice $invoice
      * @return Invoice
+     *
+     * @link https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#create-a-free-form-invoice
      */
     public function create(Invoice $invoice): Invoice
     {
-        $invoice = $this->serializer->toArray($invoice);
-
-        $response = $this->client->post('/invoices', $invoice);
+        $response = $this->client->postJson('/invoices', $this->serializer->serialize($invoice, 'json'));
 
         $data = $response->getBody()->getContents();
 
@@ -120,12 +104,15 @@ class InvoiceEndpoint
     /**
      * @param Invoice $invoice
      * @return Invoice
+     *
+     * @link https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#update-an-invoice
      */
     public function update(Invoice $invoice): Invoice
     {
-        $invoice = $this->serializer->toArray($invoice);
-
-        $response = $this->client->patch(sprintf('/invoices/%s', $invoice['id']), $invoice);
+        $response = $this->client->patch(
+            sprintf('/invoices/%s', $invoice->getId()),
+            $this->serializer->serialize($invoice, 'json')
+        );
 
         $data = $response->getBody()->getContents();
 
@@ -135,9 +122,32 @@ class InvoiceEndpoint
     }
 
     /**
-     * @param $id
+     * @param int $id invoice id
+     * @param int $invoiceLineId
+     *
+     * @link https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#delete-an-invoice-line-item
      */
-    public function delete($id)
+    public function deleteInvoiceItemLine(int $id, int $invoiceLineId): Invoice
+    {
+        $json = json_encode([
+            'line_items' => ['id' => $invoiceLineId, '_destroy' => true]
+        ]);
+
+        $response = $this->client->patchJson(sprintf('/invoices/%s', $id), $json);
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, Invoice::class, 'json');
+    }
+
+    /**
+     * @param int $id
+     *
+     * @link https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#delete-an-invoice
+     */
+    public function delete(int $id): void
     {
         $this->client->delete(sprintf('/invoices/%s', $id));
     }

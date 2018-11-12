@@ -1,4 +1,4 @@
-FH\HarvestApiClient\Model\Invoice\Line:
+FH\HarvestApiClient\Model\Invoice\InvoiceLine:
    exclusion_policy: ALL
    properties:
        kind:

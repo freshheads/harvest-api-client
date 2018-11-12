@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\Invoice;
 
+use FH\HarvestApiClient\Model\Collection\PaginatedCollection;
+use Traversable;
+
 /**
  * @author Kevin Schuurmans <kevin.schuurmans@freshheads.com>
  */
-class InvoiceContainer
+class InvoiceCollection extends PaginatedCollection
 {
     /**
      * @var Invoice[]
@@ -40,5 +43,10 @@ class InvoiceContainer
         $this->invoices = $invoices;
 
         return $this;
+    }
+
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->invoices);
     }
 }

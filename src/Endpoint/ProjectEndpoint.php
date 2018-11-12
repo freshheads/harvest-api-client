@@ -84,7 +84,6 @@ class ProjectEndpoint
         return $collection;
     }
 
-
     /**
      * @param Project $project
      * @return Project
