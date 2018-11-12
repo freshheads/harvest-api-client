@@ -52,5 +52,30 @@ $client = ClientFactory::create([], null, null, $clientConfiguration);
 // Make some calls directly via the client
 $response = $client->get('/clients', ['page' => 1]);
 
-// @todo: Add examples with Serializer and available endpoints
+```
+
+### Endpoints
+
+To use the harvest entity specific [Endpoints](src/Endpoint), you need to install [jms/serializer](https://packagist.org/packages/jms/serializer):
+
+```bash
+composer require 'jms/serializer'
+```
+
+The serializer needs to know where to find the serialization configuration of the models.
+ The configuration is located in [src/Model/configuration](src/Model/configuration). An example is given below:
+
+```php
+// Code is based on the example above.
+
+// Creates the serializer and configures it with the serialization configuration
+$serializer = SerializerBuilder::create()
+      ->addMetadataDir(__DIR__ . '/vendor/freshhads/harvest-api-client/src/Model/configuration')
+      ->build();
+
+$harvestClientEndpoint = new ClientEndpoint($client, $serializer);
+
+// List harvest clients (returns an array of Client objects).
+$harvestClients = $harvestClientEndpoint->list();
+
 ```
