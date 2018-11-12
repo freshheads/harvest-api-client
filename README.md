@@ -59,7 +59,7 @@ $response = $client->get('/clients', ['page' => 1]);
 To use the harvest entity specific [Endpoints](src/Endpoint), you need to install [jms/serializer](https://packagist.org/packages/jms/serializer):
 
 ```bash
-composer require 'jms/serializer'
+composer require 'jms/serializer' 'symfony/yaml'
 ```
 
 The serializer needs to know where to find the serialization configuration of the models.
