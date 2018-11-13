@@ -13,15 +13,19 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Model\User;
 
+use FH\HarvestApiClient\Model\Collection\PaginatedCollection;
+use Traversable;
+
 /**
+ * @author Joris van de Sande <joris.van.de.sande@freshheads.com>
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class UserContainer
+class UserCollection extends PaginatedCollection
 {
     /**
-     * @var
+     * @var User[]
      */
-    public $users;
+    private $users = [];
 
     /**
      * @return mixed
@@ -40,5 +44,10 @@ class UserContainer
         $this->users = $users;
 
         return $this;
+    }
+
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->users);
     }
 }

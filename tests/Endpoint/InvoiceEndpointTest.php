@@ -135,6 +135,26 @@ class InvoiceEndpointTest extends TestCase
         $this->assertEquals($invoice->getAmount(), $jsonBody->amount);
     }
 
+    public function testInvoiceItemLineDeleteExecutesADeleteRequestWithTheGivenIds(): void
+    {
+        $this->addJsonResponseFromFile('invoice/123.json');
+
+        $updatedClient = $this->endpoint->deleteInvoiceItemLine(123, 12345);
+
+        $request = $this->mockHttpClient->getLastRequest();
+
+        $jsonBody = json_decode($request->getBody()->getContents());
+
+        $expectedBody = new \stdClass();
+        $expectedBody->line_items = new \stdClass();
+        $expectedBody->line_items->id = 12345;
+        $expectedBody->line_items->_destroy = true;
+
+        $this->assertEquals('PATCH', $request->getMethod());
+        $this->assertEquals($expectedBody, $jsonBody);
+        $this->assertStringEndsWith('/invoices/123', (string) $request->getUri());
+    }
+
     public function testDeleteExecutesADeleteRequestWithTheGivenId(): void
     {
         $updatedClient = $this->endpoint->delete(123);

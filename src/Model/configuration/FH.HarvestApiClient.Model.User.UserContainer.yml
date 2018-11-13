@@ -1,5 +1,0 @@
-FH\HarvestApiClient\Model\User\UserContainer:
-    exclusion_policy: ALL
-    properties:
-        users:
-            type: array<FH\HarvestApiClient\Model\User\User>

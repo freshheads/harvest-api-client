@@ -19,443 +19,506 @@ namespace FH\HarvestApiClient\Model\User;
 class User
 {
     /**
-     * @var
+     * @var int
      */
     public $id;
 
     /**
-     * @var
+     * @var string
      */
     public $firstName;
 
     /**
-     * @var
+     * @var string
      */
     public $lastName;
 
     /**
-     * @var
+     * @var string
      */
     public $email;
 
     /**
-     * @var
+     * @var string
      */
     public $telephone;
 
     /**
-     * @var
+     * @var string
      */
     public $timezone;
 
     /**
-     * @var
+     * @var bool
      */
-    public $hasAccessToAllFuture_projects;
+    public $hasAccessToAllFutureProjects;
 
     /**
-     * @var
+     * @var bool
      */
     public $isContractor;
 
     /**
-     * @var
+     * @var bool
      */
     public $isAdmin;
 
     /**
-     * @var
+     * @var bool
      */
     public $isProjectManager;
 
     /**
-     * @var
+     * @var bool
      */
     public $canSeeRates;
 
     /**
-     * @var
+     * @var bool
      */
     public $canCreateProjects;
 
     /**
-     * @var
+     * @var bool
      */
     public $canCreateInvoices;
 
     /**
-     * @var
+     * @var bool
      */
     public $isActive;
 
     /**
-     * @var
+     * @var int
      */
     public $weeklyCapacity;
 
     /**
-     * @var
+     * @var float
      */
     public $defaultHourlyRate;
 
     /**
-     * @var
+     * @var float
      */
     public $costRate;
 
     /**
-     * @var
+     * @var string[]
      */
     public $roles;
 
     /**
-     * @var
+     * @var string
      */
     public $avatarUrl;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     public $createdAt;
 
     /**
-     * @var
+     * @var \DateTimeImmutable
      */
     public $updatedAt;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
+     * @return self
      */
-    public function setId($id): void
+    public function setId(int $id = null): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
     /**
-     * @param mixed $firstName
+     * @param string $firstName
+     * @return self
      */
-    public function setFirstName($firstName): void
+    public function setFirstName(string $firstName = null): self
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLastName()
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
     /**
-     * @param mixed $lastName
+     * @param string $lastName
+     * @return self
      */
-    public function setLastName($lastName): void
+    public function setLastName(string $lastName = null): self
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
+     * @return self
      */
-    public function setEmail($email): void
+    public function setEmail(string $email = null): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTelephone()
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
     /**
-     * @param mixed $telephone
+     * @param string $telephone
+     * @return self
      */
-    public function setTelephone($telephone): void
+    public function setTelephone(string $telephone = null): self
     {
         $this->telephone = $telephone;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTimezone()
+    public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
     /**
-     * @param mixed $timezone
+     * @param string $timezone
+     * @return self
      */
-    public function setTimezone($timezone): void
+    public function setTimezone(string $timezone = null): self
     {
         $this->timezone = $timezone;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getHasAccessToAllFutureProjects()
+    public function isHasAccessToAllFutureProjects(): ?bool
     {
-        return $this->hasAccessToAllFuture_projects;
+        return $this->hasAccessToAllFutureProjects;
     }
 
     /**
-     * @param mixed $hasAccessToAllFuture_projects
+     * @param bool $hasAccessToAllFutureProjects
+     * @return self
      */
-    public function setHasAccessToAllFutureProjects($hasAccessToAllFuture_projects): void
+    public function setHasAccessToAllFutureProjects(bool $hasAccessToAllFutureProjects = null): self
     {
-        $this->hasAccessToAllFuture_projects = $hasAccessToAllFuture_projects;
+        $this->hasAccessToAllFutureProjects = $hasAccessToAllFutureProjects;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getisContractor()
+    public function isContractor(): ?bool
     {
         return $this->isContractor;
     }
 
     /**
-     * @param mixed $isContractor
+     * @param bool $isContractor
+     * @return self
      */
-    public function setIsContractor($isContractor): void
+    public function setIsContractor(bool $isContractor = null): self
     {
         $this->isContractor = $isContractor;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getisAdmin()
+    public function isAdmin(): ?bool
     {
         return $this->isAdmin;
     }
 
     /**
-     * @param mixed $isAdmin
+     * @param bool $isAdmin
+     * @return self
      */
-    public function setIsAdmin($isAdmin): void
+    public function setIsAdmin(bool $isAdmin = null): self
     {
         $this->isAdmin = $isAdmin;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getisProjectManager()
+    public function isProjectManager(): ?bool
     {
         return $this->isProjectManager;
     }
 
     /**
-     * @param mixed $isProjectManager
+     * @param bool $isProjectManager
+     * @return self
      */
-    public function setIsProjectManager($isProjectManager): void
+    public function setIsProjectManager(bool $isProjectManager = null): self
     {
         $this->isProjectManager = $isProjectManager;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getCanSeeRates()
+    public function isCanSeeRates(): ?bool
     {
         return $this->canSeeRates;
     }
 
     /**
-     * @param mixed $canSeeRates
+     * @param bool $canSeeRates
+     * @return self
      */
-    public function setCanSeeRates($canSeeRates): void
+    public function setCanSeeRates(bool $canSeeRates = null): self
     {
         $this->canSeeRates = $canSeeRates;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getCanCreateProjects()
+    public function isCanCreateProjects(): ?bool
     {
         return $this->canCreateProjects;
     }
 
     /**
-     * @param mixed $canCreateProjects
+     * @param bool $canCreateProjects
+     * @return self
      */
-    public function setCanCreateProjects($canCreateProjects): void
+    public function setCanCreateProjects(bool $canCreateProjects = null): self
     {
         $this->canCreateProjects = $canCreateProjects;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getCanCreateInvoices()
+    public function isCanCreateInvoices(): ?bool
     {
         return $this->canCreateInvoices;
     }
 
     /**
-     * @param mixed $canCreateInvoices
+     * @param bool $canCreateInvoices
+     * @return self
      */
-    public function setCanCreateInvoices($canCreateInvoices): void
+    public function setCanCreateInvoices(bool $canCreateInvoices = null): self
     {
         $this->canCreateInvoices = $canCreateInvoices;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getisActive()
+    public function isActive(): ?bool
     {
         return $this->isActive;
     }
 
     /**
-     * @param mixed $isActive
+     * @param bool $isActive
+     * @return self
      */
-    public function setIsActive($isActive): void
+    public function setIsActive(bool $isActive = null): self
     {
         $this->isActive = $isActive;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getWeeklyCapacity()
+    public function getWeeklyCapacity(): ?int
     {
         return $this->weeklyCapacity;
     }
 
     /**
-     * @param mixed $weeklyCapacity
+     * @param int $weeklyCapacity
+     * @return self
      */
-    public function setWeeklyCapacity($weeklyCapacity): void
+    public function setWeeklyCapacity(int $weeklyCapacity = null): self
     {
         $this->weeklyCapacity = $weeklyCapacity;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getDefaultHourlyRate()
+    public function getDefaultHourlyRate(): ?float
     {
         return $this->defaultHourlyRate;
     }
 
     /**
-     * @param mixed $defaultHourlyRate
+     * @param float $defaultHourlyRate
+     * @return self
      */
-    public function setDefaultHourlyRate($defaultHourlyRate): void
+    public function setDefaultHourlyRate(float $defaultHourlyRate = null): self
     {
         $this->defaultHourlyRate = $defaultHourlyRate;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getCostRate()
+    public function getCostRate(): ?float
     {
         return $this->costRate;
     }
 
     /**
-     * @param mixed $costRate
+     * @param float $costRate
+     * @return self
      */
-    public function setCostRate($costRate): void
+    public function setCostRate(float $costRate = null): self
     {
         $this->costRate = $costRate;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string[]
      */
-    public function getRoles()
+    public function getRoles(): ?array
     {
         return $this->roles;
     }
 
     /**
-     * @param mixed $roles
+     * @param string[] $roles
+     * @return self
      */
-    public function setRoles($roles): void
+    public function setRoles(array $roles = null): self
     {
         $this->roles = $roles;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAvatarUrl()
+    public function getAvatarUrl(): ?string
     {
         return $this->avatarUrl;
     }
 
     /**
-     * @param mixed $avatarUrl
+     * @param string $avatarUrl
+     * @return self
      */
-    public function setAvatarUrl($avatarUrl): void
+    public function setAvatarUrl(string $avatarUrl = null): self
     {
         $this->avatarUrl = $avatarUrl;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return \DateTimeImmutable
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
     /**
-     * @param mixed $createdAt
+     * @param \DateTimeImmutable $createdAt
+     * @return self
      */
-    public function setCreatedAt($createdAt): void
+    public function setCreatedAt(\DateTimeImmutable $createdAt = null): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return \DateTimeImmutable
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param mixed $updatedAt
+     * @param \DateTimeImmutable $updatedAt
+     * @return self
      */
-    public function setUpdatedAt($updatedAt): void
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

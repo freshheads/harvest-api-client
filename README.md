@@ -6,12 +6,11 @@ Harvest API Client
 This library provides an API client for the [Harvest](https://www.getharvest.com/) [V2 API](https://help.getharvest.com/api-v2/).
 Plain PHP classes are used to map the data from the API. [JMS Serializer](https://jmsyst.com/libs/serializer) is used for the serialization/deserializtion of this model classes.
 
-It is also perfectly possible to use this Client without using the ednpoints and models.
+It is also perfectly possible to use this Client without using the endpoints and models.
 
 Requirements
-------------
-
-Harvest API Client works with PHP 7.1.0 or up. This library depends on the [HTTPPlug](http://httplug.io/), see http://docs.php-http.org/en/latest/httplug/introduction.html.
+------------3
+Harvest API Client works with PHP 7.1.3 and up. This library depends on the [HTTPPlug](http://httplug.io/), see http://docs.php-http.org/en/latest/httplug/introduction.html.
 
 Installation
 ------------
