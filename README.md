@@ -9,7 +9,8 @@ Plain PHP classes are used to map the data from the API. [JMS Serializer](https:
 It is also perfectly possible to use this Client without using the endpoints and models.
 
 Requirements
-------------3
+------------
+
 Harvest API Client works with PHP 7.1.3 and up. This library depends on the [HTTPPlug](http://httplug.io/), see http://docs.php-http.org/en/latest/httplug/introduction.html.
 
 Installation
