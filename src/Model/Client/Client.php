@@ -123,7 +123,7 @@ class Client
      * @param $address
      * @return Client
      */
-    public function setAddress($address): self
+    public function setAddress(int $address = null): self
     {
         $this->address = $address;
 
