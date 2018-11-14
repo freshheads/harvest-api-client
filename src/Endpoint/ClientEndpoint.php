@@ -17,7 +17,6 @@ use FH\HarvestApiClient\Model\Client\Client;
 use FH\HarvestApiClient\Model\Client\ClientCollection;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 use JMS\Serializer\Serializer;
-use FH\HarvestApiClient\Endpoint\Interfaces\ClientEndpointInterface;
 
 /**
  * @author Joris van de Sande <joris.van.de.sande@freshheads.com>
@@ -25,7 +24,7 @@ use FH\HarvestApiClient\Endpoint\Interfaces\ClientEndpointInterface;
  *
  * @link https://help.getharvest.com/api-v2/clients-api/clients/clients/#update-a-client
  */
-class ClientEndpoint implements ClientEndpointInterface
+class ClientEndpoint
 {
     /**
      * @var HarvestClient
