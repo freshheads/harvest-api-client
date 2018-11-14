@@ -1,0 +1,55 @@
+FH\HarvestApiClient\Model\TimeEntry\TimeEntry:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        spentDate:
+            type: string
+        User:
+            type: FH\HarvestApiClient\Model\User\User
+        userAssignment:
+            type: array
+        client:
+            type: FH\HarvestApiClient\Model\Client\Client
+        project:
+            type: FH\HarvestApiClient\Model\Project\Project
+        task:
+            type: array
+        taskAssignment:
+            type: array
+        externalReference:
+            type: array
+        invoice:
+            type: FH\HarvestApiClient\Model\Invoice\Invoice
+        hours:
+            type: float
+        notes:
+            type: string
+        isLocked:
+            type: boolean
+        lockedReason:
+            type: string
+        isClosed:
+            type: boolean
+        isBilled:
+            type: boolean
+        timerStartedAt:
+            type: DateTimeImmutable
+        startedTime:
+            type: string
+        endedTime:
+            type: string
+        isRunning:
+            type: boolean
+        billable:
+            type: boolean
+        budgeted:
+            type: boolean
+        billableRate:
+            type: float
+        costRate:
+            type: float
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable
