@@ -1,0 +1,5 @@
+FH\HarvestApiClient\Model\TimeEntry\TimeEntryCollection:
+    exclusion_policy: ALL
+    properties:
+        timeEntries:
+            type: array<FH\HarvestApiClient\Model\TimeEntry\TimeEntry>
