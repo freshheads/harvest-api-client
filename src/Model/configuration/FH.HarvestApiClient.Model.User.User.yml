@@ -40,7 +40,7 @@ FH\HarvestApiClient\Model\User\User:
         avatarUrl:
             type: string
         createdAt:
-            type: DateTime
+            type: DateTimeImmutable
         updatedAt:
-            type: DateTime
+            type: DateTimeImmutable
 
