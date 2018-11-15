@@ -174,7 +174,7 @@ class Project
         return $this->clientId;
     }
 
-    public function setClientId($clientId): self
+    public function setClientId($clientId = null): self
     {
         $this->clientId = $clientId;
 
