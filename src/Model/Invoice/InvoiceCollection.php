@@ -26,18 +26,11 @@ class InvoiceCollection extends PaginatedCollection
      */
     private $invoices = [];
 
-    /**
-     * @return Invoice[]
-     */
     public function getInvoices(): array
     {
         return $this->invoices;
     }
 
-    /**
-     * @param Invoice[] $invoices
-     * @return self
-     */
     public function setInvoices(array $invoices): self
     {
         $this->invoices = $invoices;

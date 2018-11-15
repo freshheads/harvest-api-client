@@ -145,18 +145,11 @@ class Invoice
         return (string) $this->getId();
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id = null): self
     {
         $this->id = $id;
@@ -164,18 +157,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getClientKey(): ?string
     {
         return $this->clientKey;
     }
 
-    /**
-     * @param string $clientKey
-     * @return self
-     */
     public function setClientKey($clientKey): self
     {
         $this->clientKey = $clientKey;
@@ -183,34 +169,21 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return Client
-     */
     public function getClient(): ?Client
     {
         return $this->client;
     }
 
-    /**
-     * @param Client $client
-     */
     public function setClient(Client $client = null): self
     {
         $this->client = $client;
     }
 
-    /**
-     * @return \DateTimeImmutable
-     */
     public function getPeriodStart(): ?\DateTimeImmutable
     {
         return $this->periodStart;
     }
 
-    /**
-     * @param \DateTimeImmutable $periodStart
-     * @return self
-     */
     public function setPeriodStart(\DateTimeImmutable $periodStart = null): self
     {
         $this->periodStart = $periodStart;
@@ -218,18 +191,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable
-     */
     public function getPeriodEnd(): ?\DateTimeImmutable
     {
         return $this->periodEnd;
     }
 
-    /**
-     * @param \DateTimeImmutable $periodEnd
-     * @return self
-     */
     public function setPeriodEnd(\DateTimeImmutable $periodEnd = null): self
     {
         $this->periodEnd = $periodEnd;
@@ -237,18 +203,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable
-     */
     public function getIssueDate(): ?\DateTimeImmutable
     {
         return $this->issueDate;
     }
 
-    /**
-     * @param \DateTimeImmutable $issueDate
-     * @return self
-     */
     public function setIssueDate(\DateTimeImmutable $issueDate = null): self
     {
         $this->issueDate = $issueDate;
@@ -256,18 +215,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable
-     */
     public function getDueDate(): ?\DateTimeImmutable
     {
         return $this->dueDate;
     }
 
-    /**
-     * @param \DateTimeImmutable $dueDate
-     * @return self
-     */
     public function setDueDate(\DateTimeImmutable $dueDate = null): self
     {
         $this->dueDate = $dueDate;
@@ -275,18 +227,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-    /**
-     * @param float $amount
-     * @return self
-     */
     public function setAmount(float $amount = null): self
     {
         $this->amount = $amount;
@@ -294,18 +239,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getState(): ?string
     {
         return $this->state;
     }
 
-    /**
-     * @param string $state
-     * @return self
-     */
     public function setState(string $state = null): self
     {
         $this->state = $state;
@@ -313,18 +251,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getNotes(): ?string
     {
         return $this->notes;
     }
 
-    /**
-     * @param string $notes
-     * @return self
-     */
     public function setNotes(string $notes = null): self
     {
         $this->notes = $notes;
@@ -332,18 +263,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getDueAmount(): ?int
     {
         return $this->dueAmount;
     }
 
-    /**
-     * @param int $dueAmount
-     * @return self
-     */
     public function setDueAmount(int $dueAmount = null): self
     {
         $this->dueAmount = $dueAmount;
@@ -351,18 +275,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable
-     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTimeImmutable $createdAt
-     * @return self
-     */
     public function setCreatedAt(\DateTimeImmutable $createdAt = null): self
     {
         $this->createdAt = $createdAt;
@@ -370,18 +287,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable
-     */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTimeImmutable $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(\DateTimeImmutable $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
@@ -389,17 +299,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable
-     */
     public function getSentAt(): ?\DateTimeImmutable
     {
         return $this->sentAt;
     }
 
-    /**
-     * @param \DateTimeImmutable $sentAt
-     */
     public function setSentAt(\DateTimeImmutable $sentAt = null): self
     {
         $this->sentAt = $sentAt;
@@ -410,18 +314,11 @@ class Invoice
         return $this->sentAt instanceof \DateTimeImmutable && $this->sentAt < new \DateTimeImmutable();
     }
 
-    /**
-     * @return int
-     */
     public function getTax(): ?int
     {
         return $this->tax;
     }
 
-    /**
-     * @param int $tax
-     * @return self
-     */
     public function setTax(int $tax = null): self
     {
         $this->tax = $tax;
@@ -429,18 +326,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getTaxAmount(): ?float
     {
         return $this->taxAmount;
     }
 
-    /**
-     * @param float $taxAmount
-     * @return self
-     */
     public function setTaxAmount(float $taxAmount = null): self
     {
         $this->taxAmount = $taxAmount;
@@ -448,18 +338,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTax2(): ?int
     {
         return $this->tax2;
     }
 
-    /**
-     * @param int $tax2
-     * @return self
-     */
     public function setTax2(int $tax2 = null): self
     {
         $this->tax2 = $tax2;
@@ -467,18 +350,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getTax2Amount(): ?float
     {
         return $this->tax2Amount;
     }
 
-    /**
-     * @param float $tax2Amount
-     * @return self
-     */
     public function setTax2Amount(float $tax2Amount = null): self
     {
         $this->tax2Amount = $tax2Amount;
@@ -486,18 +362,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
 
-    /**
-     * @param string $subject
-     * @return self
-     */
     public function setSubject(string $subject = null): self
     {
         $this->subject = $subject;
@@ -505,33 +374,21 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getNumber(): ?string
     {
         return $this->number;
     }
 
-    /**
-     * @param string $number
-     */
     public function setNumber(string $number = null): self
     {
         $this->number = $number;
     }
 
-    /**
-     * @return float
-     */
     public function getDiscount(): ?float
     {
         return $this->discount;
     }
 
-    /**
-     * @param float $discount
-     */
     public function setDiscount(float $discount = null): self
     {
         $this->discount = $discount;
@@ -539,17 +396,11 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getDiscountAmount(): ?float
     {
         return $this->discountAmount;
     }
 
-    /**
-     * @param float $discountAmount
-     */
     public function setDiscountAmount(float $discountAmount = null): self
     {
         $this->discountAmount = $discountAmount;
@@ -557,18 +408,11 @@ class Invoice
         return $this;
     }
 
-     /**
-     * @return InvoiceLine[]
-     */
     public function getLineItems(): ?array
     {
         return $this->lineItems;
     }
 
-    /**
-     * @param InvoiceLine[] $lineItems
-     * @return self
-     */
     public function setLineItems(array $lineItems): self
     {
         $this->lineItems = [];
@@ -580,10 +424,6 @@ class Invoice
         return $this;
     }
 
-    /**
-     * @param InvoiceLine $line
-     * @return self
-     */
     public function addLine(InvoiceLine $line): self
     {
         if ($line->getKind() !== null) {
