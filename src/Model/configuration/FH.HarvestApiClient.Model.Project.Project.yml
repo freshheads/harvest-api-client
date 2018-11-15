@@ -7,6 +7,8 @@ FH\HarvestApiClient\Model\Project\Project:
             type: string
         client:
             type: FH\HarvestApiClient\Model\Client\Client
+        clientId:
+            type: integer
         code:
             type: string
         isActive:
@@ -34,11 +36,11 @@ FH\HarvestApiClient\Model\Project\Project:
         updatedAt:
             type: DateTimeImmutable
         startsOn:
-            type: DateTimeImmutable<'Y-m-d'>
+            type: DateTimeImmutable
         endsOn:
-            type: DateTimeImmutable<'Y-m-d'>
+            type: DateTimeImmutable
         overBudgetNotificationDate:
-            type: DateTimeImmutable<'Y-m-d'>
+            type: DateTimeImmutable
         notes:
             type: string
         costBudget:
