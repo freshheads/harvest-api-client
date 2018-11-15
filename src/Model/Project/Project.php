@@ -31,6 +31,11 @@ class Project
     private $client;
 
     /**
+     * @var
+     */
+    private $clientId;
+
+    /**
      * @var string
      */
     private $name;
@@ -174,6 +179,24 @@ class Project
     public function setClient(Client $client = null): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientId(): ?int
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * @param mixed $clientId
+     */
+    public function setClientId($clientId): self
+    {
+        $this->clientId = $clientId;
 
         return $this;
     }
