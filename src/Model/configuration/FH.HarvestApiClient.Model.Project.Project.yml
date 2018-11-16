@@ -40,7 +40,7 @@ FH\HarvestApiClient\Model\Project\Project:
         endsOn:
             type: DateTimeImmutable<'Y-m-d'>
         overBudgetNotificationDate:
-            type: DateTimeImmutable
+            type: DateTimeImmutable<'Y-m-d'>
         notes:
             type: string
         costBudget:

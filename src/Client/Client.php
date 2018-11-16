@@ -67,6 +67,14 @@ final class Client
         $this->userAgent = $options['user_agent'] ?? self::DEFAULT_USER_AGENT;
     }
 
+    /**
+     * @param string $url
+     * @param string $method
+     * @param string|null $body
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
     public function request(string $url, string $method = 'GET', string $body = null, array $headers = []): ResponseInterface
     {
         $headers['Harvest-Account-ID'] = $this->accountId;
@@ -88,6 +96,13 @@ final class Client
             ->sendRequest($request);
     }
 
+    /**
+     * @param string $url
+     * @param array $parameters
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
     public function get(string $url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $queryString = $this->buildQueryString($parameters);
@@ -95,6 +110,13 @@ final class Client
         return $this->request($this->buildUrl($url, $queryString), 'GET', null, $headers);
     }
 
+    /**
+     * @param string $url
+     * @param array $parameters
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
     public function delete(string $url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $queryString = $this->buildQueryString($parameters);
@@ -102,6 +124,13 @@ final class Client
         return $this->request($this->buildUrl($url, $queryString), 'DELETE', null, $headers);
     }
 
+    /**
+     * @param string $url
+     * @param array $parameters
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
     public function post(string $url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $body = $this->buildQueryString($parameters);
@@ -110,11 +139,25 @@ final class Client
         return $this->request($this->buildUrl($url), 'POST', $body, $headers);
     }
 
+    /**
+     * @param string $url
+     * @param string $json
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
     public function postJson(string $url, string $json, array $headers = []): ResponseInterface
     {
         return $this->request($this->buildUrl($url), 'POST', $json, $headers);
     }
 
+    /**
+     * @param $url
+     * @param array $parameters
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
     public function patch($url, array $parameters = [], array $headers = []): ResponseInterface
     {
         $body = $this->buildQueryString($parameters);
@@ -123,6 +166,13 @@ final class Client
         return $this->request($this->buildUrl($url), 'PATCH', $body, $headers);
     }
 
+    /**
+     * @param $url
+     * @param string $json
+     * @param array $headers
+     * @return ResponseInterface
+     * @throws HttpException
+     */
     public function patchJson($url, string $json, array $headers = []): ResponseInterface
     {
         return $this->request($this->buildUrl($url), 'PATCH', $json, $headers);

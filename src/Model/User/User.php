@@ -330,11 +330,18 @@ class User
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getRoles(): ?array
     {
         return $this->roles;
     }
 
+    /**
+     * @param string[] $roles
+     * @return User
+     */
     public function setRoles(array $roles = null): self
     {
         $this->roles = $roles;
