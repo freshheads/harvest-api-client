@@ -54,18 +54,11 @@ class Client
      */
     private $updatedAt;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int|null $id
-     * @return Client
-     */
     public function setId(int $id = null): self
     {
         $this->id = $id;
@@ -73,18 +66,11 @@ class Client
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     * @return Client
-     */
     public function setName(string $name = null): self
     {
         $this->name = $name;
@@ -92,18 +78,11 @@ class Client
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsActive(): ?bool
     {
         return $this->isActive;
     }
 
-    /**
-     * @param bool|null $isActive
-     * @return Client
-     */
     public function setIsActive(bool $isActive = null): self
     {
         $this->isActive = $isActive;
@@ -111,37 +90,23 @@ class Client
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    /**
-     * @param $address
-     * @return Client
-     */
-    public function setAddress(int $address = null): self
+    public function setAddress(string $address = null): self
     {
         $this->address = $address;
 
         return $this;
     }
 
-    /**
-     * @return null|string
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * @param string|null $currency
-     * @return Client
-     */
     public function setCurrency(string $currency = null): self
     {
         $this->currency = $currency;
@@ -149,18 +114,11 @@ class Client
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable|null
-     */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTimeImmutable|null $createdAt
-     * @return Client
-     */
     public function setCreatedAt(\DateTimeImmutable $createdAt = null): self
     {
         $this->createdAt = $createdAt;
@@ -168,18 +126,11 @@ class Client
         return $this;
     }
 
-    /**
-     * @return \DateTimeImmutable|null
-     */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTimeImmutable|null $updatedAt
-     * @return Client
-     */
     public function setUpdatedAt(\DateTimeImmutable $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;

@@ -57,11 +57,6 @@ final class Client
      */
     private $userAgent;
 
-    /**
-     * @param HttpClient $client
-     * @param MessageFactory $messageFactory
-     * @param array $options
-     */
     public function __construct(HttpClient $client, MessageFactory $messageFactory, array $options = [])
     {
         $this->client = $client;
@@ -73,11 +68,12 @@ final class Client
     }
 
     /**
-     * @param $url
+     * @param string $url
      * @param string $method
-     * @param string $body
+     * @param string|null $body
      * @param string[] $headers
      * @return ResponseInterface
+     * @throws HttpException
      */
     public function request(string $url, string $method = 'GET', string $body = null, array $headers = []): ResponseInterface
     {
@@ -131,7 +127,7 @@ final class Client
     /**
      * @param string $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -145,7 +141,7 @@ final class Client
 
     /**
      * @param string $url
-     * @param string $json JSON string
+     * @param string $json
      * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
@@ -156,7 +152,7 @@ final class Client
     }
 
     /**
-     * @param string $url
+     * @param $url
      * @param array $parameters
      * @param string[] $headers
      * @return ResponseInterface
@@ -171,8 +167,8 @@ final class Client
     }
 
     /**
-     * @param string $url
-     * @param string $json JSON string
+     * @param $url
+     * @param string $json
      * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
@@ -182,10 +178,6 @@ final class Client
         return $this->request($this->buildUrl($url), 'PATCH', $json, $headers);
     }
 
-    /**
-     * @param string[] $parameters
-     * @return string
-     */
     private function buildQueryString(array $parameters): string
     {
         if (count($parameters) > 0) {
@@ -195,11 +187,6 @@ final class Client
         return '';
     }
 
-    /**
-     * @param string $url
-     * @param string $queryString
-     * @return string
-     */
     private function buildUrl(string $url, string $queryString = ''): string
     {
         $newUrl = $this->baseUrl . $url;

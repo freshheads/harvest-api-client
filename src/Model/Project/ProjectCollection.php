@@ -25,18 +25,11 @@ class ProjectCollection extends PaginatedCollection
      */
     private $projects;
 
-    /**
-     * @return mixed
-     */
     public function getProjects(): array
     {
         return $this->projects;
     }
 
-    /**
-     * @param  Project[] $projects
-     * @return self
-     */
     public function setProjects(array $projects): self
     {
         $this->projects = $projects;

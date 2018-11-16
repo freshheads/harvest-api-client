@@ -59,18 +59,11 @@ class InvoiceLine
         return $this->getKind() . ' - ' . $this->getDescription();
     }
 
-    /**
-     * @return string
-     */
     public function getKind(): ?string
     {
         return $this->kind;
     }
 
-    /**
-     * @param string $kind
-     * @return self
-     */
     public function setKind(string $kind = null): self
     {
         $this->kind = $kind;
@@ -78,18 +71,11 @@ class InvoiceLine
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return self
-     */
     public function setDescription(string $description = null): self
     {
         $this->description = $description;
@@ -97,18 +83,11 @@ class InvoiceLine
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
     }
 
-    /**
-     * @param int $quantity
-     * @return self
-     */
     public function setQuantity(int $quantity = null): self
     {
         $this->quantity = $quantity;
@@ -116,18 +95,11 @@ class InvoiceLine
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getUnitPrice(): ?float
     {
         return $this->unitPrice;
     }
 
-    /**
-     * @param float $unitPrice
-     * @return self
-     */
     public function setUnitPrice(float $unitPrice = null): self
     {
         $this->unitPrice = $unitPrice;
@@ -135,18 +107,11 @@ class InvoiceLine
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getAmount(): ?int
     {
         return $this->amount;
     }
 
-    /**
-     * @param int $amount
-     * @return self
-     */
     public function setAmount(int $amount = null): self
     {
         $this->amount = $amount;
@@ -154,18 +119,11 @@ class InvoiceLine
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isTaxed(): ?bool
     {
         return $this->taxed;
     }
 
-    /**
-     * @param bool $taxed
-     * @return self
-     */
     public function setTaxed(bool $taxed = null): self
     {
         $this->taxed = $taxed;
@@ -173,18 +131,11 @@ class InvoiceLine
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isTaxed2(): ?bool
     {
         return $this->taxed2;
     }
 
-    /**
-     * @param bool $taxed2
-     * @return self
-     */
     public function setTaxed2(bool $taxed2 = null): self
     {
         $this->taxed2 = $taxed2;

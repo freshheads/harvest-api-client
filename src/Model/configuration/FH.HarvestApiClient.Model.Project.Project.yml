@@ -7,6 +7,8 @@ FH\HarvestApiClient\Model\Project\Project:
             type: string
         client:
             type: FH\HarvestApiClient\Model\Client\Client
+        clientId:
+            type: integer
         code:
             type: string
         isActive:

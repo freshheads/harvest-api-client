@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Client;
 
-use Http\Client\Common\Plugin;
-use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
+use Http\Client\Common\Plugin;
+use Http\Message\MessageFactory;
+use Http\Client\Common\PluginClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
-use Http\Message\MessageFactory;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -28,13 +28,6 @@ final class ClientFactory
 {
     const DEFAULT_BASE_URL = 'https://api.harvestapp.com/api/v2';
 
-    /**
-     * @param Plugin[] $plugins List of additional plugins to use
-     * @param HttpClient $client Base HTTP client
-     * @param MessageFactory $messageFactory
-     * @param array $options
-     * @return Client
-     */
     public static function create(
         array $plugins = [],
         HttpClient $client = null,
@@ -58,10 +51,6 @@ final class ClientFactory
         return new Client($httpClient, $messageFactory, $options);
     }
 
-    /**
-     * @param array $options
-     * @return array
-     */
     private static function resolveOptions(array $options = []): array
     {
         $optionsResolver = new OptionsResolver();

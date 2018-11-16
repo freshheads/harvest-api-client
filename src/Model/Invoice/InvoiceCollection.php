@@ -36,7 +36,7 @@ class InvoiceCollection extends PaginatedCollection
 
     /**
      * @param Invoice[] $invoices
-     * @return self
+     * @return InvoiceCollection
      */
     public function setInvoices(array $invoices): self
     {

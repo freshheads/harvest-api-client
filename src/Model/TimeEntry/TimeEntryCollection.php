@@ -22,19 +22,11 @@ class TimeEntryCollection extends PaginatedCollection
      */
     private $timeEntries = [];
 
-    /**
-     * @return TimeEntry[]
-     */
     public function getTimeEntries(): array
     {
         return $this->timeEntries;
     }
 
-    /**
-     * @param  TimeEntry[] $timeEntries
-     *
-     * @return self
-     */
     public function setTimeEntries(array $timeEntries): self
     {
         $this->timeEntries = $timeEntries;

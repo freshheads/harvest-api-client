@@ -35,8 +35,8 @@ class ClientCollection extends PaginatedCollection
     }
 
     /**
-     * @param  Client[] $clients
-     * @return self
+     * @param Client[] $clients
+     * @return ClientCollection
      */
     public function setClients(array $clients): self
     {

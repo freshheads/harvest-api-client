@@ -28,7 +28,7 @@ class UserCollection extends PaginatedCollection
     private $users = [];
 
     /**
-     * @return mixed
+     * @return User[]
      */
     public function getUsers(): array
     {
@@ -36,10 +36,10 @@ class UserCollection extends PaginatedCollection
     }
 
     /**
-     * @param  User[] $users
-     * @return self
+     * @param User[] $users
+     * @return UserCollection
      */
-    public function setUsers(array $users)
+    public function setUsers(array $users): self
     {
         $this->users = $users;
 
