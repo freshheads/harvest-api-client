@@ -71,7 +71,7 @@ final class Client
      * @param string $url
      * @param string $method
      * @param string|null $body
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -99,7 +99,7 @@ final class Client
     /**
      * @param string $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -113,7 +113,7 @@ final class Client
     /**
      * @param string $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -127,7 +127,7 @@ final class Client
     /**
      * @param string $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -142,7 +142,7 @@ final class Client
     /**
      * @param string $url
      * @param string $json
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -154,7 +154,7 @@ final class Client
     /**
      * @param $url
      * @param array $parameters
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
@@ -169,7 +169,7 @@ final class Client
     /**
      * @param $url
      * @param string $json
-     * @param array $headers
+     * @param string[] $headers
      * @return ResponseInterface
      * @throws HttpException
      */
