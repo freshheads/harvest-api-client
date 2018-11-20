@@ -1,0 +1,7 @@
+FH\HarvestApiClient\Model\Project\ProjectMemberCollection:
+    exclusion_policy: ALL
+    properties:
+        userAssignments:
+            type: array<FH\HarvestApiClient\Model\Project\ProjectMember>
+
+

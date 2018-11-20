@@ -1,0 +1,27 @@
+FH\HarvestApiClient\Model\Project\ProjectMember:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        project:
+            type: FH\HarvestApiClient\Model\Project\Project
+        user:
+            type: FH\HarvestApiClient\Model\User\User
+        userId:
+            type: integer
+        isProjectManager:
+            type: bool
+        isActive:
+            type: bool
+        budget:
+            type: double
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable
+        hourlyRate:
+            type: double
+
+
+
+
