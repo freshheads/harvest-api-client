@@ -101,7 +101,7 @@ class ProjectEndpointTest extends TestCase
         $this->endpoint->retrieve(12345999);
     }
 
-    public function testCreateSerializesTheProjecttInTheRequest(): void
+    public function testCreateSerializesTheProjectInTheRequest(): void
     {
         $this->addJsonResponseFromFile('project/1.json');
         $project = new Project();
