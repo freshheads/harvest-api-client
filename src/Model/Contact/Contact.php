@@ -147,36 +147,36 @@ class Contact
         return $this;
     }
 
-    public function getPhoneOffice(): string
+    public function getPhoneOffice(): ?string
     {
         return $this->phoneOffice;
     }
 
-    public function setPhoneOffice(string $phoneOffice): self
+    public function setPhoneOffice(string $phoneOffice = null): self
     {
         $this->phoneOffice = $phoneOffice;
 
         return $this;
     }
 
-    public function getPhoneMobile(): string
+    public function getPhoneMobile(): ?string
     {
         return $this->phoneMobile;
     }
 
-    public function setPhoneMobile(string $phoneMobile): self
+    public function setPhoneMobile(string $phoneMobile = null): self
     {
         $this->phoneMobile = $phoneMobile;
 
         return $this;
     }
 
-    public function getFax(): string
+    public function getFax(): ?string
     {
         return $this->fax;
     }
 
-    public function setFax(string $fax): self
+    public function setFax(string $fax = null): self
     {
         $this->fax = $fax;
 
@@ -200,7 +200,7 @@ class Contact
         return $this->updatetAt;
     }
 
-    public function setUpdatetAt(\DateTimeImmutable $updatetAt): self
+    public function setUpdatedAt(\DateTimeImmutable $updatetAt): self
     {
         $this->updatetAt = $updatetAt;
 
