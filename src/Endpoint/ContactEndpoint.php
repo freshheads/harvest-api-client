@@ -92,7 +92,7 @@ class ContactEndpoint
      */
     public function create(Contact $contact): Contact
     {
-        $response = $this->client->postJson('/contats', $this->serializer->serialize($contact, 'json'));
+        $response = $this->client->postJson('/contacts', $this->serializer->serialize($contact, 'json'));
 
         $data = $response->getBody()->getContents();
 
