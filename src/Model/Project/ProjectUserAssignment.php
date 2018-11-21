@@ -18,7 +18,7 @@ use FH\HarvestApiClient\Model\User\User;
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ProjectMember
+class ProjectUserAssignment
 {
     /**
      * @var int

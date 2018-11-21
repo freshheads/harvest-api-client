@@ -1,4 +1,4 @@
-FH\HarvestApiClient\Model\Project\ProjectMember:
+FH\HarvestApiClient\Model\Project\ProjectUserAssignment:
     exclusion_policy: ALL
     properties:
         id:

@@ -13,17 +13,15 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Endpoint;
 
+use FH\HarvestApiClient\Model\Project\ProjectUserAssignment;
+use FH\HarvestApiClient\Model\Project\ProjectUserAssignmentCollection;
 use FH\HarvestApiClient\Model\User\User;
 use FH\HarvestApiClient\Model\Project\Project;
-use FH\HarvestApiClient\Model\Invoice\Invoice;
-use FH\HarvestApiClient\Model\Invoice\InvoiceCollection;
-use FH\HarvestApiClient\Model\Project\ProjectMemberCollection;
 use Http\Client\Common\Exception\ClientErrorException;
 use Http\Message\MessageFactory;
 use Http\Mock\Client as HttpMockClient;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use FH\HarvestApiClient\Model\Project\ProjectMember;
 
 require_once 'TestClientFactory.php';
 require_once 'TestSerializerFactory.php';
@@ -31,7 +29,7 @@ require_once 'TestSerializerFactory.php';
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ProjectMemberEndpointTest extends TestCase
+class ProjectUserAssignmentEndpointTest extends TestCase
 {
     /**
      * @var HttpMockClient
@@ -39,7 +37,7 @@ class ProjectMemberEndpointTest extends TestCase
     private $mockHttpClient;
 
     /**
-     * @var InvoiceEndpoint
+     * @var ProjectUserAssignment
      */
     private $endpoint;
 
@@ -51,7 +49,7 @@ class ProjectMemberEndpointTest extends TestCase
     protected function setUp()
     {
         $this->mockHttpClient = new HttpMockClient();
-        $this->endpoint = new ProjectMemberEndpoint(
+        $this->endpoint = new ProjectUserAssignmentEndpoint(
             TestClientFactory::create($this->mockHttpClient),
             TestSerializerFactory::create()
         );
@@ -67,37 +65,37 @@ class ProjectMemberEndpointTest extends TestCase
         $this->assertStringEndsWith('/user_assignments', (string) $request->getUri());
     }
 
-    public function testListContainsAnArrayOfProjectMembers(): void
+    public function testListContainsAnArrayOfProjectUserAssignments(): void
     {
         $this->addJsonResponseFromFile('project/member/list.json');
-        $projectMembers = $this->endpoint->list();
+        $projectUserAssignment = $this->endpoint->list();
 
-        $this->assertContainsOnlyInstancesOf(ProjectMember::class, iterator_to_array($projectMembers));
+        $this->assertContainsOnlyInstancesOf(ProjectUserAssignment::class, iterator_to_array($projectUserAssignment));
     }
 
-    public function testListReturnsProjectMemberCollection(): void
+    public function testListReturnsProjectUserAssignmentCollection(): void
     {
         $this->addJsonResponseFromFile('project/member/list.json');
         $collection = $this->endpoint->list();
 
-        $this->assertInstanceOf(ProjectMemberCollection::class, $collection);
+        $this->assertInstanceOf(ProjectUserAssignmentCollection::class, $collection);
         $this->assertEquals(1, $collection->getPage());
         $this->assertEquals(1, $collection->getTotalPages());
         $this->assertEquals(2, $collection->getTotalEntries());
     }
 
-    public function testRetrieveReturnsAProjectMember(): void
+    public function testRetrieveReturnsAProjectUserAssignments(): void
     {
         $this->addJsonResponseFromFile('project/member/list.json');
         $collection = $this->endpoint->retrieve(1);
 
-        $this->assertInstanceOf(ProjectMemberCollection::class, $collection);
+        $this->assertInstanceOf(ProjectUserAssignmentCollection::class, $collection);
         $this->assertEquals(1, $collection->getPage());
         $this->assertEquals(1, $collection->getTotalPages());
         $this->assertEquals(2, $collection->getTotalEntries());
     }
 
-    public function testUnknownProjectMemberThrowsAnException(): void
+    public function testUnknownProjectUserAssignmentThrowsAnException(): void
     {
         $this->expectException(ClientErrorException::class);
         $this->expectExceptionCode(404);
@@ -107,79 +105,83 @@ class ProjectMemberEndpointTest extends TestCase
         $this->endpoint->retrieve(12345999);
     }
 
-    public function testCreateSerializesTheProjectMemberInTheRequest(): void
+    public function testCreateSerializesTheProjectUserAssignmentInTheRequest(): void
     {
         $this->addJsonResponseFromFile('project/member/1.json');
 
         $project = new Project();
-        $project->setId(1);
-        $project->setName("CRM");
+        $project
+            ->setId(1)
+            ->setName("Online Store")
+            ->setBudget(1200);
 
         $user = new User();
         $user
-            ->setId(1)
-            ->setFirstName("Lars")
-            ->setLastName("Janssen");
+            ->setId(666)
+            ->setFirstName("Jim")
+            ->setLastName("Allen");
 
-        $projectMember = new ProjectMember();
-        $projectMember
+        $projectUserAssignment = new ProjectUserAssignment();
+        $projectUserAssignment
             ->setId(1)
             ->setProject($project)
             ->setUser($user)
             ->setBudget(120);
 
-        $newProjectMember = $this->endpoint->create($projectMember);
+        $newProjectUserAssignment = $this->endpoint->create($projectUserAssignment);
 
         $request = $this->mockHttpClient->getLastRequest();
 
         $jsonBody = json_decode($request->getBody()->getContents());
 
-        $this->assertEquals($projectMember->getBudget(), 120);
+        $this->assertEquals($newProjectUserAssignment->getBudget(), $jsonBody->budget);
 
-        $this->assertEquals($projectMember->getUser()->getid(), 1);
-        $this->assertEquals($projectMember->getUser()->getFirstName(), "Lars");
-        $this->assertEquals($projectMember->getUser()->getLastName(), "Janssen");
+        $this->assertEquals($newProjectUserAssignment->getUser()->getid(), $jsonBody->user->id);
+        $this->assertEquals($newProjectUserAssignment->getUser()->getFirstName(), $jsonBody->user->first_name);
+        $this->assertEquals($newProjectUserAssignment->getUser()->getLastName(), $jsonBody->user->last_name);
 
-        $this->assertEquals($projectMember->getProject()->getId(), 1);
-        $this->assertEquals($projectMember->getProject()->getName(), "CRM");
+        $this->assertEquals($newProjectUserAssignment->getProject()->getId(), $jsonBody->project->id);
+        $this->assertEquals($newProjectUserAssignment->getProject()->getName(), $jsonBody->project->name);
+        $this->assertEquals($newProjectUserAssignment->getProject()->getBudget(), $jsonBody->project->budget);
     }
 
-    public function testUpdateSerializesTheProjectMemberInTheRequest(): void
+    public function testUpdateSerializesTheProjectUserAssignmentInTheRequest(): void
     {
         $this->addJsonResponseFromFile('project/member/1.json');
 
         $project = new Project();
         $project->setId(1);
-        $project->setName("CRM");
+        $project->setName("Online Store");
 
         $user = new User();
         $user
-            ->setId(1)
-            ->setFirstName("Lars")
-            ->setLastName("Janssen");
+            ->setId(666)
+            ->setFirstName("Jim")
+            ->setLastName("Allen");
 
-        $projectMember = new ProjectMember();
-        $projectMember
+        $projectUserAssignment = new ProjectUserAssignment();
+        $projectUserAssignment
             ->setId(1)
             ->setProject($project)
+            ->setBudget(120)
             ->setUser($user)
             ->setIsProjectManager(true);
 
-        $updatedProject = $this->endpoint->update($projectMember);
+        $updatedProjectUserAssignment = $this->endpoint->update($projectUserAssignment);
 
         $request = $this->mockHttpClient->getLastRequest();
 
         $jsonBody = json_decode($request->getBody()->getContents());
 
-        $this->assertEquals($projectMember->isProjectManager(), true);
+        $this->assertEquals($updatedProjectUserAssignment->getBudget(), $jsonBody->budget);
+        $this->assertEquals($updatedProjectUserAssignment->isProjectManager(), $jsonBody->is_project_manager);
 
-        $this->assertEquals($projectMember->getUser()->getid(), 1);
-        $this->assertEquals($projectMember->getUser()->getid(), 1);
-        $this->assertEquals($projectMember->getUser()->getFirstName(), "Lars");
-        $this->assertEquals($projectMember->getUser()->getLastName(), "Janssen");
+        $this->assertEquals($updatedProjectUserAssignment->getUser()->getid(), $jsonBody->user->id);
+        $this->assertEquals($updatedProjectUserAssignment->getUser()->getFirstName(), $jsonBody->user->first_name);
+        $this->assertEquals($updatedProjectUserAssignment->getUser()->getLastName(), $jsonBody->user->last_name);
 
-        $this->assertEquals($projectMember->getProject()->getId(), 1);
-        $this->assertEquals($projectMember->getProject()->getName(), "CRM");
+        $this->assertEquals($updatedProjectUserAssignment->getProject()->getId(), $jsonBody->project->id);
+        $this->assertEquals($updatedProjectUserAssignment->getProject()->getName(), $jsonBody->project->name);
     }
 
     public function testRemoveExecutesADeleteRequestWithTheGivenId(): void
@@ -187,12 +189,12 @@ class ProjectMemberEndpointTest extends TestCase
         $project = new Project();
         $project->setId(1);
 
-        $projectMember = new ProjectMember();
-        $projectMember
+        $projectUserAssignment = new ProjectUserAssignment();
+        $projectUserAssignment
             ->setId(1)
             ->setProject($project);
 
-        $updatedClient = $this->endpoint->remove($projectMember);
+        $updatedClient = $this->endpoint->remove($projectUserAssignment);
 
         $request = $this->mockHttpClient->getLastRequest();
 

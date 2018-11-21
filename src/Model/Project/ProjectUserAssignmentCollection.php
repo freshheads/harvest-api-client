@@ -18,7 +18,7 @@ use FH\HarvestApiClient\Model\Collection\PaginatedCollection;
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ProjectMemberCollection extends PaginatedCollection
+class ProjectUserAssignmentCollection extends PaginatedCollection
 {
     /**
      * @var Project[]
