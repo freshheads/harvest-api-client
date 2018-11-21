@@ -75,7 +75,7 @@ class ProjectMember
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId(int $id = null): self
     {
         $this->id = $id;
 
