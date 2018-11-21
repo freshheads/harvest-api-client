@@ -1,0 +1,27 @@
+FH\HarvestApiClient\Model\Contact\Contact:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        client:
+            type: FH\HarvestApiClient\Model\Client\Client
+        title:
+            type: string
+        firstName:
+            type: string
+        lastName:
+            type: string
+        email:
+            type: string
+        phoneOffice:
+            type: string
+        phoneMobile:
+            type: string
+        fax:
+            type: string
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable
+
+
