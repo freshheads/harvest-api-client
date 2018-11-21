@@ -107,7 +107,7 @@ class ProjectMemberEndpointTest extends TestCase
         $this->endpoint->retrieve(12345999);
     }
 
-    public function testAttachSerializesTheProjectMemberInTheRequest(): void
+    public function testCreateSerializesTheProjectMemberInTheRequest(): void
     {
         $this->addJsonResponseFromFile('project/member/1.json');
 
@@ -128,7 +128,7 @@ class ProjectMemberEndpointTest extends TestCase
             ->setUser($user)
             ->setBudget(120);
 
-        $newProjectMember = $this->endpoint->attach($projectMember);
+        $newProjectMember = $this->endpoint->create($projectMember);
 
         $request = $this->mockHttpClient->getLastRequest();
 
@@ -144,7 +144,45 @@ class ProjectMemberEndpointTest extends TestCase
         $this->assertEquals($projectMember->getProject()->getName(), "CRM");
     }
 
-    public function testDetachExecutesADeleteRequestWithTheGivenId(): void
+    public function testUpdateSerializesTheProjectMemberInTheRequest(): void
+    {
+        $this->addJsonResponseFromFile('project/member/1.json');
+
+        $project = new Project();
+        $project->setId(1);
+        $project->setName("CRM");
+
+        $user = new User();
+        $user
+            ->setId(1)
+            ->setFirstName("Lars")
+            ->setLastName("Janssen");
+
+        $projectMember = new ProjectMember();
+        $projectMember
+            ->setId(1)
+            ->setProject($project)
+            ->setUser($user)
+            ->setIsProjectManager(true);
+
+        $updatedProject = $this->endpoint->update($projectMember);
+
+        $request = $this->mockHttpClient->getLastRequest();
+
+        $jsonBody = json_decode($request->getBody()->getContents());
+
+        $this->assertEquals($projectMember->isProjectManager(), true);
+
+        $this->assertEquals($projectMember->getUser()->getid(), 1);
+        $this->assertEquals($projectMember->getUser()->getid(), 1);
+        $this->assertEquals($projectMember->getUser()->getFirstName(), "Lars");
+        $this->assertEquals($projectMember->getUser()->getLastName(), "Janssen");
+
+        $this->assertEquals($projectMember->getProject()->getId(), 1);
+        $this->assertEquals($projectMember->getProject()->getName(), "CRM");
+    }
+
+    public function testRemoveExecutesADeleteRequestWithTheGivenId(): void
     {
         $project = new Project();
         $project->setId(1);
@@ -154,7 +192,7 @@ class ProjectMemberEndpointTest extends TestCase
             ->setId(1)
             ->setProject($project);
 
-        $updatedClient = $this->endpoint->detach($projectMember);
+        $updatedClient = $this->endpoint->remove($projectMember);
 
         $request = $this->mockHttpClient->getLastRequest();
 

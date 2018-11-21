@@ -69,7 +69,7 @@ class ProjectMemberEndpoint
      * @param array $parameters
      * @return ProjectMemberCollection
      *
-     * @link https://help.getharvest.com/api-v2/#list-all-project-members
+     * @link https://help.getharvest.com/api-v2/user_assignments/#list-all-project-members
      */
     public function list(): ProjectMemberCollection
     {
@@ -88,11 +88,31 @@ class ProjectMemberEndpoint
      * @param int $id
      * @return ProjectMember
      *
-     * @link https://help.getharvest.com/api-v2/projects-api/projects/#assign-to-project/user_assignments
+     * @link https://help.getharvest.com/api-v2/projects/#assign-to-project/user_assignments
      */
-    public function attach(ProjectMember $projectMember): ProjectMember
+    public function create(ProjectMember $projectMember): ProjectMember
     {
         $response = $this->client->postJson('/projects/' . $projectMember->getProject()->getId() . '/user_assignments',
+            $this->serializer->serialize($projectMember, 'json')
+        );
+
+        $data = $response->getBody()->getContents();
+
+        return $this
+            ->serializer
+            ->deserialize($data, ProjectMember::class, 'json');
+    }
+
+    /**
+     * @param ProjectMember $project
+     * @return ProjectMember
+     *
+     * @link https://help.getharvest.com/api-v2/projects-api/projects/#project/user_assignments/#user
+     */
+    public function update(ProjectMember $projectMember): ProjectMember
+    {
+        $response = $this->client->patchJson(
+            sprintf('/projects/%s/user_assignments/%s', $projectMember->getProject()->getId(), $projectMember->getId()),
             $this->serializer->serialize($projectMember, 'json')
         );
 
@@ -107,9 +127,9 @@ class ProjectMemberEndpoint
      * @param int $id
      * @return ProjectMember
      *
-     * @link https://help.getharvest.com/api-v2/projects-api/projects/#detach-project/user_assignments/#detach-user
+     * @link https://help.getharvest.com/api-v2/projects-api/projects/#project/user_assignments/#user
      */
-    public function detach(ProjectMember $projectMember): void
+    public function remove(ProjectMember $projectMember): void
     {
         $this->client->delete(sprintf('/projects/%s/user_assignments/%s', $projectMember->getProject()->getId(), $projectMember->getId()));
     }
