@@ -3,6 +3,8 @@ FH\HarvestApiClient\Model\Contact\Contact:
     properties:
         id:
             type: integer
+        clientId:
+            type: integer
         client:
             type: FH\HarvestApiClient\Model\Client\Client
         title:

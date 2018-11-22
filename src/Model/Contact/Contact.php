@@ -26,6 +26,11 @@ class Contact
     private $id;
 
     /**
+     * @var int
+     */
+    private $clientId;
+
+    /**
      * @var Client
      */
     private $client;
@@ -83,6 +88,24 @@ class Contact
     public function setId(int $id = null): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientId(): ?int
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * @param int $clientId
+     */
+    public function setClientId(int $clientId = null): self
+    {
+        $this->clientId = $clientId;
 
         return $this;
     }
