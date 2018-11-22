@@ -109,7 +109,6 @@ class ProjectEndpoint
      */
     public function update(Project $project): Project
     {
-
         $response = $this->client->patchJson(
             sprintf('/projects/%s', $project->getId()),
             $this->serializer->serialize($project, 'json')
@@ -126,7 +125,7 @@ class ProjectEndpoint
      * @param int $id
      * @link https://help.getharvest.com/api-v2/projects-api/projects/projects/#delete-a-project
      */
-    public function delete(int $id)
+    public function delete(int $id): void
     {
         $this->client->delete(sprintf('/projects/%s', $id));
     }

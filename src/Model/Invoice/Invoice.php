@@ -145,7 +145,7 @@ class Invoice
         return (string) $this->getId();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
