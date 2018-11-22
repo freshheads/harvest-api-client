@@ -82,108 +82,108 @@ class ProjectUserAssignment
         return $this;
     }
 
-    public function getProject(): Project
+    public function getProject(): ?Project
     {
         return $this->project;
     }
 
-    public function setProject(Project $project): self
+    public function setProject(Project $project = null): self
     {
         $this->project = $project;
 
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user = null): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getUserId(): int
+    public function getUserId(): ?int
     {
         return $this->userId;
     }
 
-    public function setUserId(int $userId): self
+    public function setUserId(int $userId = null): self
     {
         $this->userId = $userId;
 
         return $this;
     }
 
-    public function isProjectManager(): bool
+    public function isProjectManager(): ?bool
     {
         return $this->isProjectManager;
     }
 
-    public function setIsProjectManager(bool $isProjectManager): self
+    public function setIsProjectManager(bool $isProjectManager = null): self
     {
         $this->isProjectManager = $isProjectManager;
 
         return $this;
     }
 
-    public function isActive(): bool
+    public function isActive(): ?bool
     {
         return $this->isActive;
     }
 
-    public function setIsActive(bool $isActive): self
+    public function setIsActive(bool $isActive = null): self
     {
         $this->isActive = $isActive;
 
         return $this;
     }
 
-    public function getBudget(): float
+    public function getBudget(): ?float
     {
         return $this->budget;
     }
 
-    public function setBudget(float $budget): self
+    public function setBudget(float $budget = null): self
     {
         $this->budget = $budget;
 
         return $this;
     }
 
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt = null): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): \DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt = null): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getHourlyRate(): float
+    public function getHourlyRate(): ?float
     {
         return $this->hourlyRate;
     }
 
-    public function setHourlyRate(float $hourlyRate): self
+    public function setHourlyRate(float $hourlyRate = null): self
     {
         $this->hourlyRate = $hourlyRate;
 
