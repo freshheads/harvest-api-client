@@ -92,17 +92,11 @@ class ClientContact
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getClientId(): ?int
     {
         return $this->clientId;
     }
 
-    /**
-     * @param int $clientId
-     */
     public function setClientId(int $clientId = null): self
     {
         $this->clientId = $clientId;
@@ -110,60 +104,60 @@ class ClientContact
         return $this;
     }
 
-    public function getClient(): Client
+    public function getClient(): ?Client
     {
         return $this->client;
     }
 
-    public function setClient(Client $client): self
+    public function setClient(Client $client = null): self
     {
         $this->client = $client;
 
         return $this;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title = null): self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(string $firstName = null): self
     {
         $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLastName(string $lastName = null): self
     {
         $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email = null): self
     {
         $this->email = $email;
 
@@ -206,24 +200,24 @@ class ClientContact
         return $this;
     }
 
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt = null): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatetAt(): \DateTimeImmutable
+    public function getUpdatetAt(): ?\DateTimeImmutable
     {
         return $this->updatetAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatetAt): self
+    public function setUpdatedAt(\DateTimeImmutable $updatetAt = null): self
     {
         $this->updatetAt = $updatetAt;
 
