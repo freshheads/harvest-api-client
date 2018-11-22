@@ -1,5 +1,0 @@
-FH\HarvestApiClient\Model\Contact\ContactCollection:
-    exclusion_policy: ALL
-    properties:
-        contacts:
-            type: array<FH\HarvestApiClient\Model\Contact\Contact>

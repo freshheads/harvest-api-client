@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace FH\HarvestApiClient\Endpoint;
 
-use FH\HarvestApiClient\Model\Contact\Contact;
-use FH\HarvestApiClient\Model\Contact\ContactCollection;
+use FH\HarvestApiClient\Model\Contact\ClientContact;
+use FH\HarvestApiClient\Model\Contact\ClientContactCollection;
 use JMS\Serializer\Serializer;
 use FH\HarvestApiClient\Client\Client as HarvestClient;
 
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ContactEndpoint
+class ClientContactEndpoint
 {
     /**
      * @var HarvestClient
@@ -48,11 +48,11 @@ class ContactEndpoint
 
     /**
      * @param int $id
-     * @return Contact
+     * @return ClientContact
      *
      * @link https://help.getharvest.com/api-v2/clients-api/clients/contacts/#retrieve-a-contact
      */
-    public function retrieve(int $id): Contact
+    public function retrieve(int $id): ClientContact
     {
         $response = $this->client->get('/contacts/' . $id);
 
@@ -60,16 +60,16 @@ class ContactEndpoint
 
         return $this
             ->serializer
-            ->deserialize($data, Contact::class, 'json');
+            ->deserialize($data, ClientContact::class, 'json');
     }
 
     /**
      * @param array $parameters
-     * @return ContactCollection
+     * @return ClientContactCollection
      *
      * @link https://help.getharvest.com/api-v2/clients-api/clients/contacts/#list-all-contacts
      */
-    public function list(array $parameters = []): ContactCollection
+    public function list(array $parameters = []): ClientContactCollection
     {
         $response = $this
             ->client
@@ -79,46 +79,46 @@ class ContactEndpoint
 
         $collection = $this
             ->serializer
-            ->deserialize($data, ContactCollection::class, 'json');
+            ->deserialize($data, ClientContactCollection::class, 'json');
 
         return $collection;
     }
 
     /**
-     * @param Contact $contact
-     * @return Contact
+     * @param ClientContact $contact
+     * @return ClientContact
      *
      * @link https://help.getharvest.com/api-v2/clients-api/clients/contacts/#create-a-contact
      */
-    public function create(Contact $contact): Contact
+    public function create(ClientContact $clientContact): ClientContact
     {
-        $response = $this->client->postJson('/contacts', $this->serializer->serialize($contact, 'json'));
+        $response = $this->client->postJson('/contacts', $this->serializer->serialize($clientContact, 'json'));
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Contact::class, 'json');
+            ->deserialize($data, ClientContact::class, 'json');
     }
 
     /**
-     * @param Contact $contact
-     * @return Contact
+     * @param ClientContact $contact
+     * @return ClientContact
      *
      * @link https://help.getharvest.com/api-v2/clients-api/clients/contacts/#update-a-contact
      */
-    public function update(Contact $contact): Contact
+    public function update(ClientContact $clientContact): ClientContact
     {
         $response = $this->client->patchJson(
-            sprintf('/contacts/%s', $contact->getId()),
-            $this->serializer->serialize($contact, 'json')
+            sprintf('/contacts/%s', $clientContact->getId()),
+            $this->serializer->serialize($clientContact, 'json')
         );
 
         $data = $response->getBody()->getContents();
 
         return $this
             ->serializer
-            ->deserialize($data, Contact::class, 'json');
+            ->deserialize($data, ClientContact::class, 'json');
     }
 
     /**

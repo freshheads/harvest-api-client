@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace FH\HarvestApiClient\Endpoint;
 
 use FH\HarvestApiClient\Model\Client\Client;
-use FH\HarvestApiClient\Model\Client\ClientCollection;
-use FH\HarvestApiClient\Model\Contact\Contact;
-use FH\HarvestApiClient\Model\Contact\ContactCollection;
+use FH\HarvestApiClient\Endpoint\ClientContactEndpoint;
+use FH\HarvestApiClient\Model\contact\ClientContactCollection;
+use FH\HarvestApiClient\Model\Contact\ClientContact;
 use Http\Client\Common\Exception\ClientErrorException;
 use Http\Message\MessageFactory;
 use Http\Mock\Client as HttpMockClient;
@@ -29,7 +29,7 @@ require_once 'TestSerializerFactory.php';
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ContactEndpointTest extends TestCase
+class ClientContactEndpointTest extends TestCase
 {
     /**
      * @var HttpMockClient
@@ -49,7 +49,7 @@ class ContactEndpointTest extends TestCase
     protected function setUp()
     {
         $this->mockHttpClient = new HttpMockClient();
-        $this->endpoint = new ContactEndpoint(
+        $this->endpoint = new ClientContactEndpoint(
             TestClientFactory::create($this->mockHttpClient),
             TestSerializerFactory::create()
         );
@@ -65,34 +65,34 @@ class ContactEndpointTest extends TestCase
         $this->assertStringEndsWith('/contacts', (string) $request->getUri());
     }
 
-    public function testListContainsAnArrayOfContacts(): void
+    public function testListContainsAnArrayOfClientContacts(): void
     {
         $this->addJsonResponseFromFile('contact/list.json');
-        $contacts = $this->endpoint->list();
+        $clientContacts = $this->endpoint->list();
 
-        $this->assertContainsOnlyInstancesOf(Contact::class, iterator_to_array($contacts));
+        $this->assertContainsOnlyInstancesOf(ClientContact::class, iterator_to_array($clientContacts));
     }
 
-    public function testListReturnsContactCollection(): void
+    public function testListReturnsClientContactCollection(): void
     {
         $this->addJsonResponseFromFile('contact/list.json');
         $collection = $this->endpoint->list();
 
-        $this->assertInstanceOf(ContactCollection::class, $collection);
+        $this->assertInstanceOf(ClientContactCollection::class, $collection);
         $this->assertEquals(1, $collection->getPage());
         $this->assertEquals(1, $collection->getTotalPages());
         $this->assertEquals(2, $collection->getTotalEntries());
     }
 
-    public function testRetrieveReturnsAContact(): void
+    public function testRetrieveReturnsAClientContact(): void
     {
         $this->addJsonResponseFromFile('contact/123.json');
-        $contact = $this->endpoint->retrieve(12345);
+        $clientContact = $this->endpoint->retrieve(12345);
 
-        $this->assertEquals(4706479, $contact->getId());
+        $this->assertEquals(4706479, $clientContact->getId());
     }
 
-    public function testUnknownContactThrowsAnException(): void
+    public function testUnknownClientContactThrowsAnException(): void
     {
         $this->expectException(ClientErrorException::class);
         $this->expectExceptionCode(404);
@@ -102,40 +102,40 @@ class ContactEndpointTest extends TestCase
         $client = $this->endpoint->retrieve(12345999);
     }
 
-    public function testCreateSerializesTheContactInTheRequest(): void
+    public function testCreateSerializesTheClientContactInTheRequest(): void
     {
         $this->addJsonResponseFromFile('contact/123.json');
-        $contact = new Contact();
-        $contact
+        $clientContact = new ClientContact();
+        $clientContact
             ->setFirstName('Jane')
             ->setLastName('Doe');
 
-        $newContact = $this->endpoint->create($contact);
+        $newClientContact = $this->endpoint->create($clientContact);
 
         $request = $this->mockHttpClient->getLastRequest();
 
         $jsonBody = json_decode($request->getBody()->getContents());
 
-        $this->assertEquals($contact->getFirstName(), $jsonBody->first_name);
-        $this->assertEquals($contact->getLastName(), $jsonBody->last_name);
+        $this->assertEquals($newClientContact->getFirstName(), $jsonBody->first_name);
+        $this->assertEquals($newClientContact->getLastName(), $jsonBody->last_name);
     }
 
-    public function testUpdateSerializesTheContactInTheRequest(): void
+    public function testUpdateSerializesTheClientContactInTheRequest(): void
     {
         $this->addJsonResponseFromFile('contact/123.json');
-        $contact = new Contact();
-        $contact
+        $clientContact = new ClientContact();
+        $clientContact
             ->setFirstName('Jane')
             ->setLastName('Doe');
 
-        $updatedContact = $this->endpoint->update($contact);
+        $updatedClientContact = $this->endpoint->update($clientContact);
 
         $request = $this->mockHttpClient->getLastRequest();
 
         $jsonBody = json_decode($request->getBody()->getContents());
 
-        $this->assertEquals($updatedContact->getFirstName(), $jsonBody->first_name);
-        $this->assertEquals($updatedContact->getLastName(), $jsonBody->last_name);
+        $this->assertEquals($updatedClientContact->getFirstName(), $jsonBody->first_name);
+        $this->assertEquals($updatedClientContact->getLastName(), $jsonBody->last_name);
     }
 
     public function testDeleteExecutesADeleteRequestWithTheGivenId(): void

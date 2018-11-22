@@ -18,7 +18,7 @@ use FH\HarvestApiClient\Model\Client\Client;
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class Contact
+class ClientContact
 {
     /**
      * @var int

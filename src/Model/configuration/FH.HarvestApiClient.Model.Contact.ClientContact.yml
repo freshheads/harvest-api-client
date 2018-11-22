@@ -1,4 +1,4 @@
-FH\HarvestApiClient\Model\Contact\Contact:
+FH\HarvestApiClient\Model\Contact\ClientContact:
     exclusion_policy: ALL
     properties:
         id:

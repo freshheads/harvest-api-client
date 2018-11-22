@@ -19,34 +19,34 @@ use Traversable;
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ContactCollection extends PaginatedCollection
+class ClientContactCollection extends PaginatedCollection
 {
     /**
-     * @var Contact[]
+     * @var ClientContact[]
      */
-    private $contacts = [];
+    private $clientContacts = [];
 
     /**
-     * @return Contact[]
+     * @return ClientContact[]
      */
-    public function getContacts(): array
+    public function getClientContacts(): array
     {
-        return $this->contacts;
+        return $this->clientContacts;
     }
 
     /**
-     * @param Contact[] $contacts
-     * @return InvoiceCollection
+     * @param ClientContact[] $clientContacts
+     * @return ClientContactCollection
      */
-    public function setContacts(array $contacts): self
+    public function setClientContacts(array $clientContacts): self
     {
-        $this->contacts = $contacts;
+        $this->clientContacts = $clientContacts;
 
         return $this;
     }
 
     public function getIterator(): \Traversable
     {
-        return new \ArrayIterator($this->contacts);
+        return new \ArrayIterator($this->clientContacts);
     }
 }
