@@ -40,8 +40,8 @@ use FH\HarvestApiClient\Client\ClientFactory;
 // API Client configuration
 $clientConfiguration =
     'access_token' => 'YourAccessToken',
-    // Your harvest client ID
-    'client_id'    => 12345678,
+    // Your harvest account ID
+    'account_id'    => 12345678,
     // Harvest asks you to customize the user agent header, so that they can contact you in case you're doing something wrong
     'user_agent'   => 'My Application (my@email.com)'
 ];
@@ -70,7 +70,7 @@ The serializer needs to know where to find the serialization configuration of th
 
 // Creates the serializer and configures it with the serialization configuration
 $serializer = SerializerBuilder::create()
-      ->addMetadataDir(__DIR__ . '/vendor/freshhads/harvest-api-client/src/Model/configuration')
+      ->addMetadataDir(__DIR__ . '/vendor/freshheads/harvest-api-client/src/Model/configuration')
       ->build();
 
 $harvestClientEndpoint = new ClientEndpoint($client, $serializer);
