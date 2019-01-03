@@ -64,12 +64,12 @@ final class Task
         return $this->defaultHourlyRate;
     }
 
-    public function getIsDefault(): boolean
+    public function getIsDefault(): bool
     {
         return $this->isDefault;
     }
 
-    public function getIsActive(): boolean
+    public function getIsActive(): bool
     {
         return $this->isActive;
     }
