@@ -14,7 +14,6 @@ namespace FH\HarvestApiClient\Model\TimeEntry;
 use FH\HarvestApiClient\Client\Client;
 use FH\HarvestApiClient\Model\Invoice\Invoice;
 use FH\HarvestApiClient\Model\Project\Project;
-use FH\HarvestApiClient\Model\User\User;
 
 class TimeEntry
 {
@@ -29,7 +28,7 @@ class TimeEntry
     private $spentDate;
 
     /**
-     * @var User
+     * @var TimeEntryUser
      */
     private $user;
 
@@ -172,12 +171,12 @@ class TimeEntry
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): ?TimeEntryUser
     {
         return $this->user;
     }
 
-    public function setUser(User $user = null): self
+    public function setUser(TimeEntryUser $user = null): self
     {
         $this->user = $user;
 

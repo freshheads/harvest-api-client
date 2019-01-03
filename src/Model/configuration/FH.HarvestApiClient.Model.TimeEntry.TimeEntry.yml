@@ -5,8 +5,8 @@ FH\HarvestApiClient\Model\TimeEntry\TimeEntry:
             type: integer
         spentDate:
             type: DateTimeImmutable<'Y-m-d'>
-        User:
-            type: FH\HarvestApiClient\Model\User\User
+        user:
+            type: FH\HarvestApiClient\Model\TimeEntry\TimeEntryUser
         userAssignment:
             type: array
         client:
