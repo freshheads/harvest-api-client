@@ -1,0 +1,7 @@
+FH\HarvestApiClient\Model\TimeEntry\TimeEntryUser:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        name:
+            type: string
