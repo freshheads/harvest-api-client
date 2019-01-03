@@ -95,7 +95,7 @@ final class TaskEndpointTest extends TestCase
         $this->ensureHttpClientReturnsResponse($body, $statusCode);
     }
 
-    private function ensureHttpClientReturnsResponse(string $body, int $statusCode = 200)
+    private function ensureHttpClientReturnsResponse(string $body, int $statusCode = 200): void
     {
         $headers = [
             'Content-Type' => 'application/json'
