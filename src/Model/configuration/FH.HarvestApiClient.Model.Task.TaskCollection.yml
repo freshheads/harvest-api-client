@@ -1,0 +1,5 @@
+FH\HarvestApiClient\Model\Task\TaskCollection:
+    exclusion_policy: ALL
+    properties:
+        tasks:
+            type: array<FH\HarvestApiClient\Model\Task\Task>

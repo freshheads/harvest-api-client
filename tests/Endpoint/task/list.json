@@ -1,0 +1,96 @@
+{
+  "tasks": [
+    {
+      "id": 2511728,
+      "name": "onzintaakje",
+      "billable_by_default": true,
+      "default_hourly_rate": null,
+      "is_default": false,
+      "is_active": true,
+      "created_at": "2013-10-29T08:29:00Z",
+      "updated_at": "2014-01-24T10:51:21Z"
+    },
+    {
+      "id": 2511727,
+      "name": "TEsten",
+      "billable_by_default": true,
+      "default_hourly_rate": null,
+      "is_default": false,
+      "is_active": true,
+      "created_at": "2013-10-29T08:28:54Z",
+      "updated_at": "2014-01-24T10:51:21Z"
+    },
+    {
+      "id": 2497270,
+      "name": "testtask",
+      "billable_by_default": true,
+      "default_hourly_rate": null,
+      "is_default": false,
+      "is_active": true,
+      "created_at": "2013-10-23T12:55:44Z",
+      "updated_at": "2014-01-24T10:51:21Z"
+    },
+    {
+      "id": 1737401,
+      "name": "Development",
+      "billable_by_default": true,
+      "default_hourly_rate": 85.0,
+      "is_default": true,
+      "is_active": true,
+      "created_at": "2012-11-29T13:37:31Z",
+      "updated_at": "2014-12-12T09:58:18Z"
+    },
+    {
+      "id": 1736962,
+      "name": "Vacation",
+      "billable_by_default": false,
+      "default_hourly_rate": null,
+      "is_default": false,
+      "is_active": true,
+      "created_at": "2012-11-29T08:02:30Z",
+      "updated_at": "2012-11-29T08:02:30Z"
+    },
+    {
+      "id": 1736961,
+      "name": "Business Development",
+      "billable_by_default": false,
+      "default_hourly_rate": null,
+      "is_default": false,
+      "is_active": true,
+      "created_at": "2012-11-29T08:02:30Z",
+      "updated_at": "2012-11-29T08:02:30Z"
+    },
+    {
+      "id": 1736960,
+      "name": "Project Management",
+      "billable_by_default": true,
+      "default_hourly_rate": null,
+      "is_default": true,
+      "is_active": true,
+      "created_at": "2012-11-29T08:02:30Z",
+      "updated_at": "2014-12-12T09:58:18Z"
+    },
+    {
+      "id": 1736959,
+      "name": "Admin",
+      "billable_by_default": false,
+      "default_hourly_rate": null,
+      "is_default": true,
+      "is_active": true,
+      "created_at": "2012-11-29T08:02:30Z",
+      "updated_at": "2014-12-12T09:58:18Z"
+    }
+  ],
+  "per_page": 100,
+  "total_pages": 1,
+  "total_entries": 8,
+  "next_page": null,
+  "previous_page": null,
+  "page": 1,
+  "links": {
+    "first": "https://api.harvestapp.com/v2/tasks?is_active=0&page=1&per_page=100",
+    "next": null,
+    "previous": null,
+    "last": "https://api.harvestapp.com/v2/tasks?is_active=0&page=1&per_page=100"
+  }
+}
