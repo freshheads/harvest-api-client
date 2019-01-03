@@ -1,0 +1,19 @@
+FH\HarvestApiClient\Model\Task\Task:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        name:
+            type: string
+        billableByDefault:
+            type: boolean
+        defaultHourlyRate:
+            type: double
+        isDefault:
+            type: boolean
+        isActive:
+            type: boolean
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable
