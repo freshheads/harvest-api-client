@@ -1,0 +1,5 @@
+FH\HarvestApiClient\Model\Project\ProjectTaskAssignmentCollection:
+    exclusion_policy: ALL
+    properties:
+        taskAssignments:
+            type: array<FH\HarvestApiClient\Model\Project\ProjectTaskAssignment>

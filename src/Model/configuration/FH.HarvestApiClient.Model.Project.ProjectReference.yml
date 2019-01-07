@@ -1,0 +1,9 @@
+FH\HarvestApiClient\Model\Project\ProjectReference:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        name:
+            type: string
+        code:
+            type: string

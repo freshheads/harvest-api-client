@@ -1,0 +1,21 @@
+FH\HarvestApiClient\Model\Project\ProjectTaskAssignment:
+    exclusion_policy: ALL
+    properties:
+        id:
+            type: integer
+        billable:
+            type: bool
+        isActive:
+            type: bool
+        createdAt:
+            type: DateTimeImmutable
+        updatedAt:
+            type: DateTimeImmutable
+        hourlyRate:
+            type: double
+        budget:
+            type: double
+        project:
+            type: FH\HarvestApiClient\Model\Project\ProjectReference
+        task:
+            type: FH\HarvestApiClient\Model\Task\TaskReference
