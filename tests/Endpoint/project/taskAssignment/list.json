@@ -1,0 +1,430 @@
+{
+  "task_assignments": [
+    {
+      "id": 192001145,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2018-06-25T07:39:26Z",
+      "updated_at": "2018-06-25T07:39:26Z",
+      "hourly_rate": 100.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 10072300,
+        "name": "Agile coaching"
+      }
+    },
+    {
+      "id": 136618632,
+      "billable": false,
+      "is_active": true,
+      "created_at": "2016-12-14T10:21:17Z",
+      "updated_at": "2016-12-14T10:21:17Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 7043112,
+        "name": "Extra werk"
+      }
+    },
+    {
+      "id": 102331502,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:30Z",
+      "updated_at": "2015-11-25T13:23:30Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 658844,
+        "name": "Voorbereiding/Administratie"
+      }
+    },
+    {
+      "id": 102331501,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:30Z",
+      "updated_at": "2015-11-25T13:23:30Z",
+      "hourly_rate": 100.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 5046313,
+        "name": "Training/Cursus/Workshop"
+      }
+    },
+    {
+      "id": 102331499,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:30Z",
+      "updated_at": "2015-11-25T13:23:30Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 612166,
+        "name": "Testen"
+      }
+    },
+    {
+      "id": 102331497,
+      "billable": true,
+      "is_active": false,
+      "created_at": "2015-11-25T13:23:30Z",
+      "updated_at": "2015-11-25T13:23:30Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 658850,
+        "name": "Teamleiding"
+      }
+    },
+    {
+      "id": 102331493,
+      "billable": false,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 659424,
+        "name": "Sales/Presales"
+      }
+    },
+    {
+      "id": 102331492,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 706947,
+        "name": "Reistijd"
+      }
+    },
+    {
+      "id": 102331490,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 100.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 418084,
+        "name": "Projectmanagement"
+      }
+    },
+    {
+      "id": 102331489,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 120.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 3463803,
+        "name": "Development (Mobile)"
+      }
+    },
+    {
+      "id": 102331488,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 614484,
+        "name": "Meeting"
+      }
+    },
+    {
+      "id": 102331487,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 5046233,
+        "name": "Marketing"
+      }
+    },
+    {
+      "id": 102331486,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 658852,
+        "name": "Interactieontwerp"
+      }
+    },
+    {
+      "id": 102331485,
+      "billable": true,
+      "is_active": false,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 659039,
+        "name": "Installatie, configuratie en deployment"
+      }
+    },
+    {
+      "id": 102331484,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 612155,
+        "name": "Development (FE/BE)"
+      }
+    },
+    {
+      "id": 102331483,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 854570,
+        "name": "Hosting"
+      }
+    },
+    {
+      "id": 102331482,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 658851,
+        "name": "Design"
+      }
+    },
+    {
+      "id": 102331481,
+      "billable": true,
+      "is_active": false,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 5046236,
+        "name": "Gebruikerstest"
+      }
+    },
+    {
+      "id": 102331479,
+      "billable": false,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 1167267,
+        "name": "Evaluatie (intern/extern)"
+      }
+    },
+    {
+      "id": 102331477,
+      "billable": true,
+      "is_active": false,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 612159,
+        "name": "Development (BE)"
+      }
+    },
+    {
+      "id": 102331475,
+      "billable": true,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 120.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 2248305,
+        "name": "Advies/Concept/Strategie"
+      }
+    },
+    {
+      "id": 102331474,
+      "billable": false,
+      "is_active": true,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 0.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 658870,
+        "name": "Bugfixing/garantie"
+      }
+    },
+    {
+      "id": 102331473,
+      "billable": true,
+      "is_active": false,
+      "created_at": "2015-11-25T13:23:29Z",
+      "updated_at": "2015-11-25T13:23:29Z",
+      "hourly_rate": 100.0,
+      "budget": null,
+      "project": {
+        "id": 9423310,
+        "name": "Rapportage-tool (Intern)",
+        "code": "FHRAPP"
+      },
+      "task": {
+        "id": 658899,
+        "name": "Advies"
+      }
+    }
+  ],
+  "per_page": 100,
+  "total_pages": 1,
+  "total_entries": 23,
+  "next_page": null,
+  "previous_page": null,
+  "page": 1,
+  "links": {
+    "first": "https://api.harvestapp.com/v2/projects/9423310/task_assignments?page=1&per_page=100",
+    "next": null,
+    "previous": null,
+    "last": "https://api.harvestapp.com/v2/projects/9423310/task_assignments?page=1&per_page=100"
+  }
+}
