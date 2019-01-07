@@ -24,39 +24,34 @@ final class Task
     private $createdAt;
     private $updatedAt;
 
-    public function __construct(
-        int $id,
-        string $name,
-        bool $billableByDefault,
-        ?float $defaultHourlyRate,
-        bool $isDefault,
-        bool $isActive,
-        \DateTimeImmutable $createdAt,
-        \DateTimeImmutable $updatedAt
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->billableByDefault = $billableByDefault;
-        $this->defaultHourlyRate = $defaultHourlyRate;
-        $this->isDefault = $isDefault;
-        $this->isActive = $isActive;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
-    }
-
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function getBillableByDefault(): bool
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getBillableByDefault(): ?bool
     {
         return $this->billableByDefault;
+    }
+
+    public function setBillableByDefault(bool $billableByDefault): void
+    {
+        $this->billableByDefault = $billableByDefault;
     }
 
     public function getDefaultHourlyRate(): ?float
@@ -64,23 +59,48 @@ final class Task
         return $this->defaultHourlyRate;
     }
 
-    public function getIsDefault(): bool
+    public function setDefaultHourlyRate(float $defaultHourlyRate)
+    {
+        $this->defaultHourlyRate = $defaultHourlyRate;
+    }
+
+    public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
-    public function getIsActive(): bool
+    public function setIsDefault(bool $isDefault): void
+    {
+        $this->isDefault = $isDefault;
+    }
+
+    public function getIsActive(): ?bool
     {
         return $this->isActive;
     }
 
-    public function getCreatedAt(): \DateTimeImmutable
+    public function setIsActive(bool $isActive): void
+    {
+        $this->isActive = $isActive;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): \DateTimeImmutable
+    public function setCreatedAt(\DateTimeImmutable $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
