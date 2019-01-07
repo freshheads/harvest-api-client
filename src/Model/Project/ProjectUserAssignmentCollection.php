@@ -18,18 +18,23 @@ use FH\HarvestApiClient\Model\Collection\PaginatedCollection;
 /**
  * @author Lars Janssen <lars.janssen@freshheads.com>
  */
-class ProjectUserAssignmentCollection extends PaginatedCollection
+final class ProjectUserAssignmentCollection extends PaginatedCollection
 {
-    /**
-     * @var Project[]
-     */
     private $userAssignments;
 
+    /**
+     * @return ProjectUserAssignment[]
+     */
     public function getUserAssignments(): array
     {
         return $this->userAssignments;
     }
 
+    /**
+     * @param ProjectUserAssignment[] $projects
+     *
+     * @return $this
+     */
     public function setUserAssignments(array $projects): self
     {
         $this->userAssignments = $userAssignments;
