@@ -54,7 +54,7 @@ final class Task
         return $this->name;
     }
 
-    public function getBillableByDefault(): boolean
+    public function getBillableByDefault(): bool
     {
         return $this->billableByDefault;
     }
