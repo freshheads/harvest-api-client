@@ -21,7 +21,7 @@ You must have a [php-http/client-implementation](https://packagist.org/providers
 You can run the following command, to install Guzzle6 and it's php-http adapter.
 
 ```bash
-composer require 'freshheads/harvest-api-client ^1.0@dev' 'php-http/guzzle6-adapter'
+composer require 'freshheads/harvest-api-client' 'php-http/guzzle6-adapter'
 ```
 
 You can replace `php-http/guzzle6-adapter` with any other compatible client implementation.
